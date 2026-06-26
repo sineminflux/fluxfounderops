@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ============================================================
+     LAUNCH STATUS: copy, images, links, policies, OG image, and
+     favicon are all in place. Remaining: deploy to Vercel and
+     connect the fluxfounderops.com domain.
+     ============================================================ -->
+
+<title>Sinem · Fractional Operations Manager</title>
+<meta name="description" content="Fractional Operations Manager for founder-led businesses, coaches, and creatives. I build the systems that get your business out of your head, so you focus on the work only you can do." />
+
+<!-- Open Graph (the preview people see when you paste the link) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Sinem · Fractional Operations Manager" />
+<meta property="og:description" content="I build the backend so your business can run while you think, create, and lead." />
+<meta property="og:url" content="https://fluxfounderops.com" />
+<meta property="og:image" content="https://fluxfounderops.com/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/png" href="favicon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@1,9..144,500..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --paper:#F4EFE4;
+    --card:#FBF8F2;
+    --ink:#1B1A17;
+    --terra:#dd7958;
+    --terra-deep:#c25f3f;
+    --green:#5E8C4A;
+    --yellow:#FBF2A4;
+    --pink:#F4C4D4;
+    --grid:rgba(221,121,88,0.09);
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:46px 46px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  section{padding:56px 0;}
+  h1,h2,h3{line-height:1.05;letter-spacing:.01em;}
+  .display{font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400;}
+  .accent{font-family:'Fraunces',serif;font-style:italic;color:var(--terra);font-weight:700;letter-spacing:-0.015em;white-space:nowrap;}
+  .star{color:var(--terra);font-family:'Fraunces',serif;font-style:italic;}
+  a{color:inherit;}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;
+    text-decoration:none;font-size:15px;transition:transform .12s ease,box-shadow .12s ease;}
+  .btn-primary{background:var(--terra);color:#fff;box-shadow:0 3px 0 var(--terra-deep);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--terra-deep);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .btn[aria-disabled="true"]{background:#d9cfbb;color:#6b6356;box-shadow:none;cursor:not-allowed;pointer-events:none;}
+
+  /* ---- nav ---- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.86);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--grid);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .wordmark{font-family:'Fraunces',serif;font-style:italic;font-size:28px;font-weight:700;color:var(--ink);text-decoration:none;}
+  .wordmark small{font-family:'Inter';font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--terra-deep);display:block;line-height:1;margin-top:-2px;font-weight:600;}
+  .navlinks{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:500;}
+  .navlinks a{text-decoration:none;}
+  .navlinks a.text:hover{color:var(--terra-deep);}
+  .navtoggle{display:none;}
+  @media(max-width:760px){
+    .navlinks .text{display:none;}
+  }
+
+  /* ---- hero ---- */
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-deep);font-weight:600;}
+  .hero h1{font-size:clamp(40px,7vw,82px);margin:18px 0 22px;max-width:14ch;}
+  .hero h1 em{font-style:normal;}
+  .hero .sub{font-size:20px;max-width:64ch;color:#3a352d;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0;align-items:center;}
+  .chip{background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:8px 15px;
+    font-size:14px;font-weight:500;}
+  .chip-arrow{color:var(--terra);font-weight:700;}
+  .payoff{font-size:18px;max-width:56ch;margin-bottom:8px;}
+  .payoff b{background:linear-gradient(transparent 60%,var(--yellow) 60%);padding:0 2px;}
+  .tagline{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--green);margin-bottom:26px;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;}
+  .hero .wrap.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;grid-template-areas:"head photo" "foot foot";column-gap:40px;row-gap:6px;align-items:start;}
+  .hero-head{grid-area:head;}
+  .hero-photo{grid-area:photo;}
+  .hero-foot{grid-area:foot;margin-top:8px;}
+  .hero-photo-ph{position:relative;width:100%;max-width:400px;margin-left:auto;aspect-ratio:1/1;
+    border-radius:50%;background:var(--terra);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .hero-photo-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .ph-note{font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:23px;text-align:center;line-height:1.25;padding:0 26px;}
+  @media(max-width:820px){.hero .wrap.hero-grid{grid-template-columns:1fr;grid-template-areas:"head" "photo" "foot";} .hero-photo-ph{max-width:300px;margin:8px 0 0;}}
+
+  /* ---- section heading ---- */
+  .kicker{font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--terra);}
+  .sec-h{font-size:clamp(28px,4vw,44px);margin:4px 0 30px;}
+
+  /* ---- story timeline ---- */
+  .timeline{border-left:2px solid var(--terra);margin-left:8px;padding-left:0;}
+  .node{position:relative;padding:0 0 10px 30px;margin-bottom:14px;}
+  .node::before{content:"";position:absolute;left:-9px;top:6px;width:16px;height:16px;border-radius:50%;
+    background:var(--terra);border:3px solid var(--paper);}
+  details.node summary{cursor:pointer;list-style:none;font-weight:600;font-size:19px;}
+  details.node summary::-webkit-details-marker{display:none;}
+  .node .when{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-deep);font-weight:600;}
+  .node .body{margin-top:10px;font-size:16px;color:#3a352d;max-width:60ch;}
+  details[open] summary .plus{transform:rotate(45deg);}
+  .plus{display:inline-block;color:var(--terra);font-weight:700;margin-left:6px;transition:transform .15s;}
+  .microflow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center;}
+  .microflow .step{background:var(--card);border:1px dashed var(--terra);border-radius:8px;padding:6px 11px;font-size:13px;}
+
+  /* ---- horizontal timeline ---- */
+  .htl{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:18px;}
+  .htl::before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:var(--terra);z-index:0;}
+  .tnode{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:9px;}
+  .tnode .dot{width:16px;height:16px;border-radius:50%;background:var(--terra);border:3px solid var(--paper);}
+  .tnode .when{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-deep);font-weight:700;}
+  .tnode h3{font-size:19px;line-height:1.2;margin-top:2px;}
+  .tnode p{font-size:14.5px;color:#3a352d;}
+  .polaroid{background:#fff;border:1px solid rgba(27,26,23,.16);padding:9px 9px 0;
+    box-shadow:3px 6px 14px rgba(27,26,23,.16);width:200px;max-width:100%;align-self:center;}
+  .polaroid .pframe{position:relative;aspect-ratio:4/5;background:var(--terra);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .polaroid .pframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .polaroid .pph{font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:15px;}
+  .polaroid .pcap{display:block;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--ink);padding:8px 4px 12px;}
+  .polaroid.r-a{transform:rotate(-3deg);} .polaroid.r-b{transform:rotate(2.5deg);} .polaroid.r-c{transform:rotate(-1.5deg);}
+  @media(max-width:760px){.htl{grid-template-columns:1fr;gap:28px;} .htl::before{display:none;} .polaroid{align-self:flex-start;}}
+
+  /* ---- fun facts ---- */
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;}
+  .fact{border:1.5px solid var(--ink);border-radius:12px;padding:18px 18px 20px;
+    box-shadow:3px 4px 0 rgba(27,26,23,.10);font-size:15px;line-height:1.42;color:var(--ink);}
+  .fact .fb{font-family:'Fraunces',serif;font-style:italic;color:var(--terra);font-size:22px;display:block;margin-bottom:6px;line-height:1;}
+  .fact.y{background:var(--yellow);} .fact.p{background:var(--pink);} .fact.g{background:#cfe3c3;} .fact.c{background:var(--card);} .fact.w{background:#fff;}
+  .proofshot{margin-top:2px;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:2px 3px 0 rgba(27,26,23,.10);max-width:100%;}
+  .proofshot img{display:block;width:100%;height:auto;}
+  .facts-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:30px;align-items:center;margin-top:20px;}
+  .photo-frame{background:#fff;border:1px solid rgba(27,26,23,.16);padding:10px 10px 0;box-shadow:4px 8px 18px rgba(27,26,23,.18);transform:rotate(-2deg);max-width:430px;justify-self:center;}
+  .photo-frame img{display:block;width:100%;height:auto;}
+  .photo-frame .pcap{display:block;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:17px;padding:9px 4px 12px;color:var(--ink);}
+  @media(max-width:820px){.facts-wrap{grid-template-columns:1fr;}}
+
+  /* ---- cards grid ---- */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .grid-tools{margin-top:10px;}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr;}}
+  .card{background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:24px;
+    box-shadow:4px 4px 0 rgba(27,26,23,.08);}
+  .num{font-family:'Anton',sans-serif;font-size:34px;color:var(--terra);line-height:1;}
+  .card h3{font-size:20px;margin:8px 0 8px;}
+  .card p{font-size:15px;color:#3a352d;}
+
+  /* ---- who I work with ---- */
+  .who{background:var(--ink);color:var(--paper);border-radius:18px;padding:46px;}
+  .who p{font-size:clamp(20px,2.6vw,28px);line-height:1.4;max-width:30ch;font-weight:500;}
+  .who .kicker{color:var(--yellow);}
+
+  /* ---- work folders ---- */
+  details.folder{background:var(--card);border:1.5px solid var(--ink);border-radius:12px;
+    margin-bottom:14px;box-shadow:3px 3px 0 rgba(27,26,23,.08);overflow:hidden;}
+  details.folder summary{cursor:pointer;list-style:none;padding:20px 22px;display:flex;align-items:center;gap:14px;}
+  details.folder summary::-webkit-details-marker{display:none;}
+  .tab{background:var(--yellow);border:1.5px solid var(--ink);border-radius:5px 5px 0 0;
+    padding:3px 12px;font-size:12px;font-weight:700;transform:translateY(-2px);}
+  .folder .oneliner{font-size:15px;color:#3a352d;flex:1;}
+  .folder .detail{padding:0 22px 22px;font-size:15px;color:#3a352d;}
+  .folder .detail ul{margin:8px 0 0 18px;}
+  .folder .detail li{margin-bottom:8px;}
+
+  /* ---- product card ---- */
+  .product{background:var(--pink);border:1.5px solid var(--ink);border-radius:14px;padding:26px;
+    margin-top:52px;box-shadow:4px 4px 0 rgba(27,26,23,.1);}
+  .product .price{font-family:'Anton',sans-serif;font-size:30px;}
+  .product .eyebrow{color:var(--terra-deep);}
+  .product ul{margin:14px 0 14px 18px;font-size:15px;}
+  .product li{margin-bottom:6px;}
+  .product .smallprint{font-size:12px;color:#5a5247;margin-top:8px;max-width:50ch;}
+  .product .ctacap{font-size:12px;color:#5a5247;margin-top:8px;font-style:italic;}
+
+  /* ---- tools sticky note ---- */
+  .sticky{background:var(--yellow);border-radius:4px;padding:30px 34px;max-width:640px;
+    transform:rotate(-1deg);box-shadow:5px 6px 14px rgba(27,26,23,.12);}
+  .sticky .kicker{color:var(--terra-deep);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .tag{background:rgba(255,255,255,.6);border:1px solid var(--ink);border-radius:6px;padding:5px 11px;font-size:14px;font-weight:500;}
+
+  /* ---- closing ---- */
+  .closing{text-align:center;}
+  .closing h2{font-size:clamp(28px,4.4vw,48px);max-width:18ch;margin:0 auto 14px;}
+  .closing p{font-size:18px;max-width:44ch;margin:0 auto 26px;color:#3a352d;}
+
+  /* ---- footer ---- */
+  footer{border-top:1px solid var(--grid);padding:40px 0 50px;font-size:14px;}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:flex-start;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--terra-deep);}
+  .footlinks{display:flex;flex-wrap:wrap;gap:16px;}
+  .legal{font-size:12px;color:#6b6356;margin-top:14px;line-height:1.6;width:100%;}
+
+  /* ---- decorative elements used throughout ---- */
+  section{position:relative;overflow:hidden;}
+  .deco{position:absolute;pointer-events:none;z-index:0;}
+  .wrap{position:relative;z-index:1;}
+  .washi{height:24px;width:130px;opacity:.9;border-radius:2px;box-shadow:0 1px 2px rgba(27,26,23,.12);}
+  .washi.pink{background:repeating-linear-gradient(45deg,var(--pink) 0 7px,#f8d6e0 7px 14px);}
+  .washi.yellow{background:repeating-linear-gradient(45deg,var(--yellow) 0 7px,#fff7c2 7px 14px);}
+  .washi.green{background:repeating-linear-gradient(45deg,#bcd6ae 0 7px,#cfe3c3 7px 14px);}
+  .burst{font-family:'Fraunces',serif;font-style:italic;color:var(--terra);font-size:34px;line-height:1;}
+  .note-pin{display:inline-block;background:var(--yellow);border:1.5px solid var(--ink);border-radius:3px;
+    padding:9px 13px;font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--ink);
+    box-shadow:3px 4px 0 rgba(27,26,23,.14);transform:rotate(-2deg);}
+
+  /* tint a few sections so color runs the whole page */
+  #story{background:linear-gradient(180deg,rgba(251,242,164,.22),transparent 60%);}
+  #work{background:linear-gradient(180deg,rgba(244,196,212,.18),transparent 45%);}
+  #tools{background:linear-gradient(180deg,rgba(94,140,74,.10),transparent 60%);}
+
+  /* coloured what-I-do cards */
+  .card.y{border-top:6px solid var(--yellow);}
+  .card.p{border-top:6px solid var(--pink);}
+  .card.g{border-top:6px solid var(--green);}
+  .card.t{border-top:6px solid var(--terra);}
+
+  /* ---- case studies ---- */
+  .case{margin:60px 0;padding-top:8px;}
+  .case + .case{border-top:1px dashed var(--terra);padding-top:46px;}
+  .case-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
+  .case-tab{background:var(--yellow);border:1.5px solid var(--ink);border-radius:6px;padding:5px 13px;
+    font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+  .case-tab.pink{background:var(--pink);}
+  .case-tab.green{background:#cfe3c3;}
+  .case-no{font-family:'Anton',sans-serif;color:var(--terra);font-size:26px;}
+  .case h3{font-size:clamp(22px,3vw,32px);margin:6px 0 8px;}
+  .case .lead{font-size:17px;color:#3a352d;max-width:62ch;margin-bottom:8px;}
+  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;margin-top:24px;}
+  .case-grid.media-left > .media{order:-1;}
+  .case-grid.center{grid-template-columns:1fr;max-width:760px;margin-left:auto;margin-right:auto;}
+  @media(max-width:820px){.case-grid{grid-template-columns:1fr;}}
+
+  /* image placeholders */
+  .ph{border:2px dashed var(--terra);border-radius:12px;
+    background:repeating-linear-gradient(45deg,rgba(221,121,88,.06) 0 12px,transparent 12px 24px);
+    min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--terra-deep);padding:22px;gap:8px;}
+  .ph .picon{font-size:26px;}
+  .ph .label{font-family:'Fraunces',serif;font-style:italic;font-size:23px;line-height:1.1;}
+  .ph .hint{font-size:12px;color:#6b6356;max-width:32ch;}
+  .shot{border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:4px 5px 0 rgba(27,26,23,.10);background:var(--card);}
+  .shot img{display:block;width:100%;height:auto;}
+
+  /* diagram + tree panels */
+  .panel{background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:22px;
+    box-shadow:5px 5px 0 rgba(27,26,23,.08);}
+  .panel svg{width:100%;height:auto;display:block;}
+  .panel .cap{font-size:13px;color:#6b6356;margin-top:12px;text-align:center;}
+  .panel-title{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:12px;}
+
+  /* folder tree */
+  .tree{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13.5px;line-height:1.95;white-space:pre;overflow-x:auto;}
+  .tree .root{font-weight:700;color:var(--ink);}
+  .tree .f{color:var(--terra-deep);font-weight:700;}
+  .tree .note{color:#8a8275;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+  .pill{background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;}
+  .pill.y{background:var(--yellow);}
+  .pill.p{background:var(--pink);}
+  .pill.g{background:#cfe3c3;}
+  .swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .sw{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;}
+  .sw i{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--ink);display:inline-block;}
+
+  /* ---- collapsible case folders (Work) ---- */
+  .casefolder{position:relative;margin:34px 0 0;background:var(--card);border:2px solid var(--ink);
+    border-radius:3px 14px 14px 14px;box-shadow:5px 6px 0 rgba(27,26,23,.10);}
+  .casefolder > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 22px;}
+  .casefolder > summary::-webkit-details-marker{display:none;}
+  .casefolder > summary:hover .fname{color:var(--terra-deep);}
+  .tabtop{position:absolute;top:-21px;left:22px;height:23px;display:flex;align-items:center;padding:0 16px;
+    border:2px solid var(--ink);border-bottom:none;border-radius:9px 9px 0 0;
+    font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
+  .tabtop.yellow{background:var(--yellow);}
+  .tabtop.pink{background:var(--pink);}
+  .tabtop.green{background:#cfe3c3;}
+  .fname{flex:1;font-size:clamp(17px,2.3vw,23px);font-weight:700;color:var(--ink);line-height:1.2;}
+  .fchev{font-family:'Anton',sans-serif;font-size:26px;color:var(--terra);line-height:1;transition:transform .15s;}
+  .casefolder[open] .fchev{transform:rotate(45deg);}
+  .fbody{padding:2px 22px 28px;}
+  .fbody > .lead:first-child{margin-top:0;}
+
+  /* ---- who I work with: post-it ---- */
+  #who{padding-top:56px;padding-bottom:56px;}
+  .postit{position:relative;max-width:760px;margin:0 auto;background:var(--yellow);
+    border:2px solid var(--ink);border-radius:7px;padding:52px 50px;
+    box-shadow:9px 11px 0 rgba(27,26,23,.16);
+    background-image:linear-gradient(rgba(27,26,23,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(27,26,23,.07) 1px,transparent 1px);
+    background-size:32px 32px;}
+  .postit .tape{position:absolute;top:-15px;left:50%;width:170px;height:32px;
+    transform:translateX(-50%) rotate(-3deg);opacity:.92;border:1px solid rgba(27,26,23,.22);
+    background:repeating-linear-gradient(45deg,var(--pink) 0 9px,#f8d6e0 9px 18px);}
+  .burst-deco{position:absolute;font-family:'Fraunces',serif;font-style:italic;color:var(--green);font-size:32px;line-height:1;pointer-events:none;}
+  .who-kicker{font-family:'Fraunces',serif;font-style:italic;font-size:26px;color:var(--ink);margin-bottom:18px;}
+  .who-line{font-size:clamp(19px,2.3vw,25px);line-height:1.45;font-weight:500;color:var(--ink);margin:0 0 9px;max-width:36ch;}
+  .who-line b{font-weight:800;}
+  .hl-w,.hl-p,.hl-g{padding:0 .16em;border-radius:4px;font-weight:700;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .hl-w{background:#fff;}
+  .hl-p{background:var(--pink);}
+  .hl-g{background:#cfe3c3;}
+  @media(max-width:560px){.postit{padding:44px 24px;} .who-line{max-width:none;}}
+
+  @media(max-width:760px){.deco{display:none;}}
+
+  @media(prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto!important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <div class="wrap">
+    <a class="wordmark" href="#top">sinem.<small>Fractional Operations Manager</small></a>
+    <div class="navlinks">
+      <a class="text" href="#what">What I do</a>
+      <a class="text" href="#story">About</a>
+      <a class="text" href="#work">Work</a>
+      <a class="text" href="#who">Who I help</a>
+      <a class="text" href="#tools">Tools</a>
+      <a class="text" href="#facts">Fun facts</a>
+      <!-- REPLACE href with real booking link -->
+      <a class="btn btn-primary js-book" href="https://calendly.com/sineminflux/30min" target="_blank" rel="noopener">Book a call →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-head">
+      <p class="eyebrow">AI-leveraged operations strategist</p>
+      <h1 class="display">I build the systems that get your business <span class="accent" style="font-size:0.6em;">out of your head.</span></h1>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-ph">
+        <img src="headshot.png" alt="Sinem Furtana" onerror="this.style.display='none';" />
+        <span class="ph-note">Save your photo here<br>as <b>headshot.png</b></span>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <p class="sub">Fractional Operations Manager for founder-led businesses, coaches, and creatives.</p>
+      <div class="chips">
+        <span class="chip">Find the bottleneck</span><span class="chip-arrow">→</span>
+        <span class="chip">Build the backend</span><span class="chip-arrow">→</span>
+        <span class="chip">Bring in AI where it benefits</span>
+      </div>
+      <p class="payoff">So you focus on the thing that actually matters: <b>your creative strategy.</b></p>
+      <div class="cta-row">
+        <a class="btn btn-primary js-book" href="https://calendly.com/sineminflux/30min" target="_blank" rel="noopener">Book a call →</a>
+        <a class="btn btn-ghost" href="#story">See how I work ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT I DO (A PROCESS MAP) ===================== -->
+<section id="what">
+  <div class="wrap">
+    <p class="kicker">What I do <span class="star">✷</span></p>
+    <h2 class="sec-h display">A process map</h2>
+    <div class="grid2">
+      <div class="card y"><div class="num">01</div><h3>Find the bottleneck</h3><p>Unwritten context, repeated steps, non-value-added work.</p></div>
+      <div class="card p"><div class="num">02</div><h3>Build the backend</h3><p>Systems, SOPs, and process digitisation.</p></div>
+      <div class="card g"><div class="num">03</div><h3>Bring in AI when it earns its place</h3><p>Your Claude Operating System, agents, and connectors.</p></div>
+      <div class="card t"><div class="num">04</div><h3>Optimise delivery</h3><p>Fewer touches, cleaner handoffs, work that ships without waiting on you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STORY ===================== -->
+<section id="story">
+  <div class="deco" style="top:30px;right:28px;transform:rotate(-7deg);"><div class="washi green"></div></div>
+  <div class="wrap">
+    <p class="kicker">About me <span class="star">✷</span></p>
+    <h2 class="sec-h display">Who I am, and how I got here</h2>
+    <p style="max-width:54ch;margin-bottom:28px;color:#3a352d;">I have spent my career making complicated operations run without the chaos.</p>
+
+    <div class="htl">
+      <div class="tnode">
+        <span class="dot"></span>
+        <span class="when">Supply chain</span>
+        <div class="polaroid r-a">
+          <div class="pframe"><img src="timeline-1.png" alt="" onerror="this.style.display='none';" /><span class="pph">photo 1</span></div>
+          <span class="pcap">on the line</span>
+        </div>
+        <h3>I built systems that move things on time</h3>
+        <p>I managed complex systems that got products onto shelves on time, and I built and optimised supply chains that delivered food aid to crisis zones across MENA.</p>
+      </div>
+
+      <div class="tnode">
+        <span class="dot"></span>
+        <span class="when">The career break</span>
+        <div class="polaroid r-b">
+          <div class="pframe"><img src="timeline-2.png" alt="" onerror="this.style.display='none';" /><span class="pph">photo 2</span></div>
+          <span class="pcap">stepping back</span>
+        </div>
+        <h3>I stepped back on purpose</h3>
+        <p>I built a Substack on career transitions that grew to around a thousand readers. I learned how to build an audience, a body of work, and a point of view.</p>
+      </div>
+
+      <div class="tnode">
+        <span class="dot"></span>
+        <span class="when">Now</span>
+        <div class="polaroid r-c">
+          <div class="pframe"><img src="timeline-3.png" alt="" onerror="this.style.display='none';" /><span class="pph">photo 3</span></div>
+          <span class="pcap">building</span>
+        </div>
+        <h3>I help founders reclaim their time</h3>
+        <p>I help women running founder-led businesses reclaim their time and creativity by deciding where their attention goes on purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===================== WORK ===================== -->
+<section id="work">
+  <div class="deco" style="top:28px;right:26px;transform:rotate(7deg);"><div class="washi yellow"></div></div>
+  <div class="wrap">
+    <p class="kicker">Work <span class="star">✷</span></p>
+    <h2 class="sec-h display">Systems I've built so far</h2>
+    <p style="max-width:58ch;margin-bottom:10px;color:#3a352d;">The first two run my own business. The third is the one you're reading. Click a folder to open it.</p>
+
+    <!-- ===== CASE 01: Sinem HQ ===== -->
+    <details class="casefolder" open>
+      <summary>
+        <span class="tabtop yellow">01 · Sinem HQ</span>
+        <span class="fname">A Claude operating system I run my whole business from</span>
+        <span class="fchev" aria-hidden="true">+</span>
+      </summary>
+      <div class="fbody">
+      <p class="lead">An AI coworker with structure. A router sends every request to the right part of the business, a memory layer updates itself as the system learns, and a library of skills runs on its own. Notion sits underneath as the task and to-do layer.</p>
+
+      <div class="case-grid">
+        <div class="panel">
+          <p class="panel-title">The folder system</p>
+          <div class="tree"><span class="root">Sinem HQ/</span>        the router
+├─ <span class="f">CLAUDE.md</span>     <span class="note">how to act</span>
+├─ <span class="f">MEMORY.md</span>     <span class="note">what is true</span>
+├─ 00_Resources/ <span class="note">priorities · voice</span>
+├─ Personal Assistant/
+├─ Content Studio/
+├─ Sinem in Flux/
+├─ Fractional Ops/
+├─ Freelance/
+└─ Wiki/         <span class="note">capture · distil · link · index</span>
+
+<span class="note">every room has its own CLAUDE.md + MEMORY.md</span></div>
+          <div class="pill-row">
+            <span class="pill y">1 router</span><span class="pill">6 workstations</span><span class="pill p">memory layer</span><span class="pill g">skills library</span>
+          </div>
+        </div>
+        <div class="media">
+          <div class="shot"><img src="case1.png" alt="Sinem HQ home and workstation folders" /></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:24px;">
+        <p class="panel-title">How it learns: every session feeds the system</p>
+        <svg viewBox="0 0 660 215" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Self-learning loop. A work session surfaces corrections, decisions and facts. They are written into CLAUDE.md and MEMORY.md. The next session starts smarter.">
+          <defs>
+            <marker id="ar" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#dd7958"/></marker>
+            <marker id="arg" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5E8C4A"/></marker>
+          </defs>
+          <g font-family="Inter, system-ui, sans-serif">
+            <rect x="14" y="34" width="180" height="78" rx="13" fill="#FBF2A4" stroke="#1B1A17" stroke-width="2"/>
+            <text x="104" y="68" text-anchor="middle" font-size="15" font-weight="700" fill="#1B1A17">A work session</text>
+            <text x="104" y="89" text-anchor="middle" font-size="12" fill="#3a352d">you + the AI coworker</text>
+
+            <rect x="240" y="34" width="180" height="78" rx="13" fill="#F4C4D4" stroke="#1B1A17" stroke-width="2"/>
+            <text x="330" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#1B1A17">What surfaces</text>
+            <text x="330" y="87" text-anchor="middle" font-size="11.5" fill="#3a352d">corrections · decisions · facts</text>
+
+            <rect x="466" y="34" width="180" height="78" rx="13" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
+            <text x="556" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#1B1A17">Written down</text>
+            <text x="556" y="87" text-anchor="middle" font-size="11.5" fill="#c25f3f" font-weight="700">CLAUDE.md · MEMORY.md</text>
+
+            <line x1="194" y1="73" x2="238" y2="73" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar)"/>
+            <line x1="420" y1="73" x2="464" y2="73" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar)"/>
+
+            <path d="M556,112 C556,200 104,200 104,114" fill="none" stroke="#5E8C4A" stroke-width="2.5" marker-end="url(#arg)"/>
+            <text x="330" y="158" text-anchor="middle" font-size="13.5" font-weight="700" fill="#5E8C4A">every next session starts smarter</text>
+          </g>
+        </svg>
+        <p class="cap">Nothing important lives only in my head. The system writes it down, so it compounds.</p>
+      </div>
+      </div>
+    </details>
+
+    <!-- ===== CASE 02: AI Second Brain ===== -->
+    <details class="casefolder">
+      <summary>
+        <span class="tabtop pink">02 · AI Second Brain</span>
+        <span class="fname">Saved links become structured knowledge</span>
+        <span class="fchev" aria-hidden="true">+</span>
+      </summary>
+      <div class="fbody">
+      <p class="lead">I save things on my phone all day. This pipeline catches them, transcribes them, files each one under the right topic, and distils it into notes I can actually use later. Built on Andrej Karpathy's capture, distil, link, index.</p>
+
+      <div class="panel" style="margin-top:22px;">
+        <p class="panel-title">The capture pipeline</p>
+        <svg viewBox="0 0 660 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capture pipeline. Save a link on your phone, it arrives in a Slack channel, Apify scrapes and transcribes it, then it auto-routes to the right topic.">
+          <defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#dd7958"/></marker></defs>
+          <g font-family="Inter, system-ui, sans-serif">
+            <rect x="8" y="38" width="150" height="74" rx="12" fill="#FBF2A4" stroke="#1B1A17" stroke-width="2"/>
+            <text x="83" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Save a link</text>
+            <text x="83" y="90" text-anchor="middle" font-size="11.5" fill="#3a352d">from my phone</text>
+
+            <rect x="186" y="38" width="158" height="74" rx="12" fill="#F4C4D4" stroke="#1B1A17" stroke-width="2"/>
+            <text x="265" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Slack capture</text>
+            <text x="265" y="89" text-anchor="middle" font-size="10" fill="#3a352d">#instagram · #youtube · #articles</text>
+
+            <rect x="372" y="38" width="120" height="74" rx="12" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
+            <text x="432" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Apify</text>
+            <text x="432" y="90" text-anchor="middle" font-size="10.5" fill="#3a352d">scrape + transcribe</text>
+
+            <rect x="520" y="38" width="132" height="74" rx="12" fill="#cfe3c3" stroke="#1B1A17" stroke-width="2"/>
+            <text x="586" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Auto-route</text>
+            <text x="586" y="90" text-anchor="middle" font-size="11.5" fill="#3a352d">by topic</text>
+
+            <line x1="158" y1="75" x2="184" y2="75" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar2)"/>
+            <line x1="344" y1="75" x2="370" y2="75" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar2)"/>
+            <line x1="492" y1="75" x2="518" y2="75" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar2)"/>
+          </g>
+        </svg>
+        <div class="pill-row" style="justify-content:center;">
+          <span class="pill">capture</span><span class="chip-arrow">→</span>
+          <span class="pill">distil</span><span class="chip-arrow">→</span>
+          <span class="pill">link</span><span class="chip-arrow">→</span>
+          <span class="pill">index</span>
+        </div>
+      </div>
+
+      <div class="case-grid media-left" style="margin-top:24px;">
+        <div class="media">
+          <div class="shot"><img src="case2.png" alt="A captured clip filed under its topic" /></div>
+        </div>
+        <div>
+          <p style="font-size:16px;color:#3a352d;margin-bottom:12px;">Three phone-to-Slack inboxes feed it, one per source:</p>
+          <div class="pill-row">
+            <span class="pill p">#instagram-capture</span>
+            <span class="pill p">#youtube-capture</span>
+            <span class="pill p">#articles-capture</span>
+          </div>
+          <p style="font-size:15px;color:#3a352d;margin-top:16px;">Each clip files itself under the right topic, gets distilled into a source note, and links to what I already know. No manual filing.</p>
+        </div>
+      </div>
+      </div>
+    </details>
+
+    <!-- ===== CASE 03: This website ===== -->
+    <details class="casefolder">
+      <summary>
+        <span class="tabtop green">03 · This website</span>
+        <span class="fname">Vibe-coded from a blank file, by me and Claude</span>
+        <span class="fchev" aria-hidden="true">+</span>
+      </summary>
+      <div class="fbody">
+      <p class="lead">Designed and built from scratch in Cowork. A token-based design system, reusable structure, accessibility baked in, then a clean path to production. The thing you are reading is the case study.</p>
+
+      <div class="case-grid center">
+        <div class="panel">
+          <p class="panel-title">From blank file to live</p>
+          <svg viewBox="0 0 660 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Build pipeline. Blank file, into Cowork with a skill and design spec, to index dot html, to GitHub, to Vercel live.">
+            <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#dd7958"/></marker></defs>
+            <g font-family="Inter, system-ui, sans-serif">
+              <rect x="11" y="30" width="110" height="52" rx="11" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
+              <text x="66" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">Blank file</text>
+
+              <rect x="143" y="30" width="110" height="52" rx="11" fill="#FBF2A4" stroke="#1B1A17" stroke-width="2"/>
+              <text x="198" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">Cowork</text>
+              <text x="198" y="71" text-anchor="middle" font-size="9.5" fill="#3a352d">skill + spec</text>
+
+              <rect x="275" y="30" width="110" height="52" rx="11" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
+              <text x="330" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">index.html</text>
+
+              <rect x="407" y="30" width="110" height="52" rx="11" fill="#F4C4D4" stroke="#1B1A17" stroke-width="2"/>
+              <text x="462" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">GitHub</text>
+
+              <rect x="539" y="30" width="110" height="52" rx="11" fill="#cfe3c3" stroke="#1B1A17" stroke-width="2"/>
+              <text x="594" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">Vercel</text>
+              <text x="594" y="71" text-anchor="middle" font-size="9.5" fill="#3a352d">live</text>
+
+              <line x1="121" y1="56" x2="141" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
+              <line x1="253" y1="56" x2="273" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
+              <line x1="385" y1="56" x2="405" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
+              <line x1="517" y1="56" x2="537" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
+            </g>
+          </svg>
+          <div class="swatches">
+            <span class="sw"><i style="background:#F4EFE4;"></i>Paper</span>
+            <span class="sw"><i style="background:#1B1A17;"></i>Ink</span>
+            <span class="sw"><i style="background:#dd7958;"></i>Terracotta</span>
+            <span class="sw"><i style="background:#5E8C4A;"></i>Green</span>
+            <span class="sw"><i style="background:#FBF2A4;"></i>Sticky</span>
+            <span class="sw"><i style="background:#F4C4D4;"></i>Washi</span>
+          </div>
+        </div>
+        <div class="media">
+          <div class="shot"><img src="case3.png" alt="This website in the Cowork editor" /></div>
+        </div>
+      </div>
+      </div>
+    </details>
+
+    <!-- SECONDARY OFFER: $49 self-serve product -->
+    <div class="product">
+      <p class="eyebrow">Do it yourself · $49</p>
+      <h3 class="display" style="font-size:26px;margin:6px 0;">Build your Claude OS <span class="price">$49</span></h3>
+      <p>Not ready to bring someone in yet? Start here. This is the Claude setup behind my own operation: the structure, the memory, the workstations, the prompts. I packaged it as a template and walked through the build on video, so you can stand up your own version.</p>
+      <ul>
+        <li>The Claude OS template: a router, a memory layer, and a workstation per part of your business.</li>
+        <li>A step-by-step video walkthrough where I set it up from a blank file.</li>
+        <li>A starter prompt pack and a setup checklist.</li>
+      </ul>
+      <p style="font-size:14px;"><b>Delivered instantly.</b> The second you pay, you get an email with the template and the walkthrough link. Yours to keep.</p>
+      <!-- Buy button stays inactive until Stripe activates the account, then swap href for the Stripe payment link and remove aria-disabled + caption -->
+      <a class="btn btn-primary" href="#" aria-disabled="true" style="margin-top:14px;">Buy · $49</a>
+      <p class="ctacap">Checkout opens at launch.</p>
+      <p class="smallprint">Digital product, delivered instantly. By buying it you agree to immediate access and waive the 14-day cancellation right, so all sales are final. Full terms in the <a href="refund.html" style="text-decoration:underline;">Refund Policy</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHO I WORK WITH ===================== -->
+<section id="who">
+  <div class="wrap">
+    <div class="postit">
+      <span class="tape"></span>
+      <span class="burst-deco" style="top:-18px;right:26px;transform:rotate(-8deg);">✷</span>
+      <span class="burst-deco" style="bottom:28px;left:-12px;font-size:26px;">✷</span>
+
+      <p class="who-kicker">Who I work with ✷</p>
+
+      <p class="who-line">You run a <span class="hl-w">founder-led business</span>, a <span class="hl-p">coach</span>, <span class="hl-g">digital business owner</span>, or <span class="hl-w">creator</span>.</p>
+
+      <p class="who-line">You built it, you know it inside out, and now most of it <b>depends on you being available</b>.</p>
+
+      <p class="who-line"><b>I build the backend</b> so your business can run while you <span class="hl-w">think</span>, <span class="hl-p">create</span>, and <span class="hl-g">lead</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TOOLS ===================== -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sticky">
+      <p class="kicker">My toolkit, in progress</p>
+      <p style="font-size:16px;margin-top:6px;">Actively learning. I am deep in the backend tools that make this work right now:</p>
+      <div class="tags">
+        <span class="tag">Make</span><span class="tag">Kit</span><span class="tag">ManyChat</span>
+        <span class="tag">Notion</span><span class="tag">Claude</span><span class="tag">+ whatever a build needs next</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FUN FACTS ===================== -->
+<section id="facts">
+  <div class="deco" style="top:24px;right:26px;transform:rotate(6deg);"><div class="washi pink"></div></div>
+  <div class="wrap">
+    <p class="kicker">Off the clock <span class="star">✷</span></p>
+    <h2 class="sec-h display">A few fun facts</h2>
+    <div class="facts-wrap">
+      <div class="photo-frame">
+        <img src="funfact.png" alt="Skydiving over the Giza pyramids" />
+        <span class="pcap">over the Giza pyramids ✷</span>
+      </div>
+      <div class="facts">
+        <div class="fact y"><span class="fb">✷</span>Born in Nevşehir, Turkey, the city famous for its hot-air balloons.</div>
+        <div class="fact p"><span class="fb">✷</span>Lived on 3 continents and in 5 countries in the last 7 years.</div>
+        <div class="fact g"><span class="fb">✷</span>Skydived twice, once over the Giza pyramids.</div>
+        <div class="fact c"><span class="fb">✷</span>Trained life coach through Martha Beck's Wayfinder program.</div>
+        <div class="fact w"><span class="fb">✷</span>This year, I'm becoming a runner.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING CTA ===================== -->
+<section id="book">
+  <div class="wrap closing">
+    <p class="kicker">Ready when you are</p>
+    <h2 class="display">Ready to reclaim your time and creativity?</h2>
+    <p>Let's find your bottleneck and build the system that removes it.</p>
+    <a class="btn btn-primary js-book" href="https://calendly.com/sineminflux/30min" target="_blank" rel="noopener" style="font-size:17px;padding:15px 28px;">Book a call →</a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="wordmark" href="#top">sinem.<small>Fractional Operations Manager</small></a>
+    </div>
+    <div class="footlinks">
+      <!-- REPLACE social URLs -->
+      <a href="https://www.instagram.com/sinemfurtana/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://substack.com/@sineminflux?r=92o50&amp;utm_campaign=profile&amp;utm_medium=profile-page" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.linkedin.com/in/sinemfurtana/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:hello@fluxfounderops.com">Email</a>
+      <a href="refund.html">Refunds</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <p class="legal">
+      © 2026 Flux Works LTD.<br>
+      Flux Works LTD is a company registered in England and Wales, company number 17100448.
+      Registered address: Unit 501 Leroy House, 434-436 Essex Road, London, United Kingdom, N1 3FY.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
