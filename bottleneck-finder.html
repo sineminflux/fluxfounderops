@@ -188,9 +188,11 @@ footer{padding:48px 0;text-align:center;font-size:12px;color:#7a766e;}
       <h1>Where does your business run on <span class="terra">you</span>?</h1>
       <p class="lead">Fifteen questions, about four minutes, no wrong answers (some uncomfortable ones). You'll find the stage of your business that depends on you personally, what it's costing you every month, and the order I'd fix it in: the full report, right at the end.</p>
       <div class="emailrow">
+        <input type="email" id="startEmail" placeholder="your@email.com" aria-label="Email address">
         <button class="btn" onclick="startQuiz()">Start the quiz →</button>
       </div>
-      <p class="emailnote">No email needed. Your answers stay in your browser, and your full report appears at the end.</p>
+      <p class="emailerr" id="emailErr">That email doesn't look complete. Try again?</p>
+      <p class="emailnote">Enter your email to begin. Your full report appears at the end, and you'll get the occasional letter on running a calmer backend. Unsubscribe whenever.</p>
     </div>
     <svg class="burst" viewBox="0 0 64 64" fill="none" stroke="#dd7958" stroke-width="3" stroke-linecap="round">
       <line x1="32" y1="4" x2="32" y2="20"/><line x1="32" y1="44" x2="32" y2="60"/>
@@ -511,6 +513,17 @@ var FLOW = [SEG1, SEG2].concat(QUESTIONS);
 
 var email = "";
 function startQuiz(){
+  var input = document.getElementById('startEmail');
+  var err = document.getElementById('emailErr');
+  var val = (input.value || "").trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)){ err.style.display = 'block'; input.focus(); return; }
+  err.style.display = 'none';
+  email = val;
+  // capture to Kit (form 9669772), no backend; fire-and-continue so a slow network never traps the user
+  try{
+    var fd = new FormData(); fd.append('email_address', val);
+    fetch('https://app.kit.com/forms/9669772/subscriptions', {method:'POST', body:fd, headers:{'Accept':'application/json'}}).catch(function(){});
+  }catch(e){}
   document.getElementById('intro').classList.add('hidden');
   document.getElementById('quiz').classList.remove('hidden');
   step = 0; scores = {};
