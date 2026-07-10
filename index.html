@@ -144,6 +144,20 @@ nav .cta{background:var(--terra);color:#fff !important;border:2px solid var(--in
 .endcta{text-align:center;}
 .endcta .lead{margin:10px auto 0;}
 .endcta .endbtnrow{margin-top:28px;}
+.signup-band{background:#F3EADF;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:70px 0;text-align:center;}
+.signup-band .lead{margin:10px auto 0;}
+.signup-form{max-width:520px;margin:26px auto 0;}
+.signup-fields{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.signup-input{flex:1 1 260px;min-width:0;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:13px 20px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);}
+.signup-input:focus{outline:none;border-color:var(--terra-deep);}
+.signup-input::placeholder{color:#9a948a;}
+.signup-btn{flex:0 0 auto;background:var(--terra);color:#fff;border:2px solid var(--ink);border-radius:999px;box-shadow:4px 4px 0 var(--terra-deep);padding:0;font-weight:600;font-size:14px;font-family:'Inter',sans-serif;cursor:pointer;transition:transform .15s ease;}
+.signup-btn span{display:block;padding:13px 26px;}
+.signup-btn:hover{transform:translateY(-1px);}
+.signup-form .formkit-alert{list-style:none;margin:16px auto 0;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:600;max-width:480px;}
+.signup-form .formkit-alert:empty{display:none;}
+.signup-form .formkit-alert-error{background:#fde8e2;border:1.5px solid #f2643b;color:#c0341a;}
+.signup-form .formkit-alert-success{background:#dff3e6;border:1.5px solid var(--green);color:#3f6f48;}
 footer{border-top:2px solid var(--ink);padding:46px 0 42px;margin-top:20px;}
 footer .frow{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
 footer .fmark{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--ink);font-size:26px;text-decoration:none;display:block;line-height:1;}
@@ -733,6 +747,23 @@ footer .legal .cright{display:block;color:#5a564e;font-weight:600;margin-bottom:
     </div>
   </div>
 </section>
+
+<!-- ========== EMAIL CAPTURE (Kit form 9669772) ========== -->
+<section class="signup-band">
+  <div class="wrap">
+    <span class="kicker reveal">Not ready to book?</span>
+    <h2 class="reveal">Get the occasional letter on running a <span class="terra">calmer backend</span>.</h2>
+    <p class="lead reveal">Practical notes on taking the busywork off your plate with systems and a bit of AI. Unsubscribe whenever.</p>
+    <form action="https://app.kit.com/forms/9669772/subscriptions" class="seva-form formkit-form signup-form reveal" method="post" data-sv-form="9669772" data-uid="4e1965989e" data-format="inline" data-version="5">
+      <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+      <div data-element="fields" class="signup-fields">
+        <input class="formkit-input signup-input" name="email_address" aria-label="Email address" placeholder="your@email.com" required type="email">
+        <button data-element="submit" class="signup-btn" type="submit"><span>Subscribe &rarr;</span></button>
+      </div>
+    </form>
+  </div>
+</section>
+<script async src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 
 <!-- ========== CLOSING CTA ========== -->
 <section class="endcta">
