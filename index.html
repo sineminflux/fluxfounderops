@@ -1,745 +1,1116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<!-- ============================================================
-     LAUNCH STATUS: copy, images, links, policies, OG image, and
-     favicon are all in place. Remaining: deploy to Vercel and
-     connect the fluxfounderops.com domain.
-     ============================================================ -->
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sinem · Fractional Operations Manager</title>
-<meta name="description" content="Fractional Operations Manager for founder-led businesses, coaches, and creatives. I build the systems that get your business out of your head, so you focus on the work only you can do." />
-
-<!-- Open Graph (the preview people see when you paste the link) -->
+<meta name="description" content="Fractional Operations Manager for founder-led businesses. I design and operate the systems that make a business scale, so founders get back the freedom they built it for." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Sinem · Fractional Operations Manager" />
-<meta property="og:description" content="I build the backend so your business can run while you think, create, and lead." />
+<meta property="og:description" content="I map your business loop, stop the ops leaks, and run the backend, so you do the work only you can do." />
 <meta property="og:url" content="https://fluxfounderops.com" />
 <meta property="og:image" content="https://fluxfounderops.com/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-
 <link rel="icon" type="image/png" href="favicon.png" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@1,9..144,500..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@1,9..144,500..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#F4EFE4;
-    --card:#FBF8F2;
-    --ink:#1B1A17;
-    --terra:#dd7958;
-    --terra-deep:#c25f3f;
-    --green:#5E8C4A;
-    --yellow:#FBF2A4;
-    --pink:#F4C4D4;
-    --grid:rgba(221,121,88,0.09);
-    --maxw:1080px;
-  }
+:root{
+  --paper:#FAF7F1;--paper-2:#FFFFFF;--ink:#1B1A17;
+  --terra:#dd7958;--terra-deep:#c25f3f;
+  --green:#6a8f6b;--yellow:#e9c46a;--pink:#e5a9a9;
+  --grid:rgba(221,121,88,0.08);--cell:52px;--maxw:920px;--muted:#4c4a45;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;font-size:14px;line-height:1.62;color:var(--ink);
+  background-color:var(--paper);
+  background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
+  background-size:var(--cell) var(--cell);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 36px;}
+section{padding:88px 0;}
+h1{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(38px,5vw,66px);line-height:1.08;max-width:20ch;margin-bottom:10px;overflow-wrap:break-word;}
+h1 .nobreak{white-space:nowrap;}
+h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(30px,5vw,50px);line-height:1.03;}
+h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:19px;}
+.terra{color:var(--terra);}
+.grn{color:var(--green);}
+.accentline{display:block;font-family:'Fraunces',serif;font-style:italic;font-weight:600;text-transform:none;font-size:.52em;line-height:1.15;letter-spacing:0;margin-top:12px;color:var(--ink);}
+.kicker{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--terra-deep);font-size:20px;display:block;margin-bottom:16px;}
+.lead{font-size:15px;line-height:1.7;max-width:52ch;margin-top:26px;}
+p{max-width:56ch;}
 
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Inter',system-ui,sans-serif;
-    color:var(--ink);
-    background:var(--paper);
-    background-image:
-      linear-gradient(var(--grid) 1px,transparent 1px),
-      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-    background-size:46px 46px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-  section{padding:56px 0;}
-  h1,h2,h3{line-height:1.05;letter-spacing:.01em;}
-  .display{font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400;}
-  .accent{font-family:'Fraunces',serif;font-style:italic;color:var(--terra);font-weight:700;letter-spacing:-0.015em;white-space:nowrap;}
-  .star{color:var(--terra);font-family:'Fraunces',serif;font-style:italic;}
-  a{color:inherit;}
+/* preview scaffold banner — not part of the real site */
+.previewbar{background:repeating-linear-gradient(135deg,#1B1A17,#1B1A17 12px,#231f1b 12px,#231f1b 24px);color:#F4EFE4;font-size:12px;padding:9px 32px;text-align:center;letter-spacing:.02em;}
+.previewbar b{color:var(--yellow);}
+.sectiontag{display:inline-block;background:var(--yellow);border:2px solid var(--ink);border-radius:6px;box-shadow:3px 3px 0 rgba(27,26,23,.12);font-size:11px;font-weight:700;letter-spacing:.05em;padding:5px 12px;margin-bottom:20px;transform:rotate(-.8deg);}
 
-  /* ---- buttons ---- */
-  .btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;
-    text-decoration:none;font-size:15px;transition:transform .12s ease,box-shadow .12s ease;}
-  .btn-primary{background:var(--terra);color:#fff;box-shadow:0 3px 0 var(--terra-deep);}
-  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 0 var(--terra-deep);}
-  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
-  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
-  .btn[aria-disabled="true"]{background:#d9cfbb;color:#6b6356;box-shadow:none;cursor:not-allowed;pointer-events:none;}
+nav{background:var(--ink);padding:16px 34px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:20;}
+nav .mark{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:#F4EFE4;font-size:20px;text-decoration:none;}
+nav .links{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+nav .links a{color:#cfc7b6;text-decoration:none;font-size:13.5px;}
+nav .links a:hover{color:#F4EFE4;}
+nav .cta{background:var(--terra);color:#fff !important;border:2px solid var(--ink);border-radius:999px;padding:8px 18px;font-weight:600;}
 
-  /* ---- nav ---- */
-  nav{position:sticky;top:0;z-index:50;background:rgba(244,239,228,.86);
-    backdrop-filter:blur(8px);border-bottom:1px solid var(--grid);}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
-  .wordmark{font-family:'Fraunces',serif;font-style:italic;font-size:28px;font-weight:700;color:var(--ink);text-decoration:none;}
-  .wordmark small{font-family:'Inter';font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--terra-deep);display:block;line-height:1;margin-top:-2px;font-weight:600;}
-  .navlinks{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:500;}
-  .navlinks a{text-decoration:none;}
-  .navlinks a.text:hover{color:var(--terra-deep);}
-  .navtoggle{display:none;}
-  @media(max-width:760px){
-    .navlinks .text{display:none;}
-  }
+.btn{
+  display:inline-block;background:var(--terra);color:#fff;text-decoration:none;
+  border:2px solid var(--ink);border-radius:999px;box-shadow:4px 4px 0 var(--terra-deep);
+  padding:12px 26px;font-weight:600;font-size:14px;transition:transform .15s ease;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn.ghost{background:var(--paper-2);color:var(--ink);box-shadow:4px 4px 0 rgba(27,26,23,.15);}
+.ctarow{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;align-items:center;}
+.callshape{font-size:12.5px;color:#5a564e;margin-top:14px;max-width:48ch;}
 
-  /* ---- hero ---- */
-  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-deep);font-weight:600;}
-  .hero h1{font-size:clamp(40px,7vw,82px);margin:18px 0 22px;max-width:14ch;}
-  .hero h1 em{font-style:normal;}
-  .hero .sub{font-size:20px;max-width:64ch;color:#3a352d;}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0;align-items:center;}
-  .chip{background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:8px 15px;
-    font-size:14px;font-weight:500;}
-  .chip-arrow{color:var(--terra);font-weight:700;}
-  .payoff{font-size:18px;max-width:56ch;margin-bottom:8px;}
-  .payoff b{background:linear-gradient(transparent 60%,var(--yellow) 60%);padding:0 2px;}
-  .tagline{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--green);margin-bottom:26px;}
-  .cta-row{display:flex;flex-wrap:wrap;gap:14px;}
-  .hero .wrap.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;grid-template-areas:"head photo" "foot foot";column-gap:40px;row-gap:6px;align-items:start;}
-  .hero-head{grid-area:head;}
-  .hero-photo{grid-area:photo;}
-  .hero-foot{grid-area:foot;margin-top:8px;}
-  .hero-photo-ph{position:relative;width:100%;max-width:400px;margin-left:auto;aspect-ratio:1/1;
-    border-radius:50%;background:var(--terra);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .hero-photo-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .ph-note{font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:23px;text-align:center;line-height:1.25;padding:0 26px;}
-  @media(max-width:820px){.hero .wrap.hero-grid{grid-template-columns:1fr;grid-template-areas:"head" "photo" "foot";} .hero-photo-ph{max-width:300px;margin:8px 0 0;}}
+.proofline{
+  display:inline-block;margin-top:22px;background:var(--paper-2);border:2px solid var(--ink);
+  border-radius:999px;box-shadow:4px 4px 0 rgba(27,26,23,.12);padding:8px 18px;font-size:13px;font-weight:600;
+}
+.proofline b{color:var(--terra-deep);}
 
-  /* ---- section heading ---- */
-  .kicker{font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--terra);}
-  .sec-h{font-size:clamp(28px,4vw,44px);margin:4px 0 30px;}
+/* hero (real component) */
+.burst{position:absolute;right:7%;top:120px;width:64px;}
+.hero{position:relative;}
+.herogrid{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;}
+.herogrid > div:first-child{flex:1 1 360px;min-width:0;}
+@media(min-width:820px){.herogrid{flex-wrap:nowrap;}}
+.roundphoto{width:300px;height:300px;max-width:100%;flex:0 0 auto;margin-top:40px;position:relative;}
+.roundphoto img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:3px solid var(--ink);box-shadow:6px 6px 0 rgba(27,26,23,.14);display:block;background:linear-gradient(135deg,var(--pink),var(--yellow));}
+.roundphoto .cap{position:absolute;bottom:-6px;right:-4px;background:var(--yellow);border:2px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 rgba(27,26,23,.12);font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:13px;padding:5px 14px;transform:rotate(-3deg);}
 
-  /* ---- story timeline ---- */
-  .timeline{border-left:2px solid var(--terra);margin-left:8px;padding-left:0;}
-  .node{position:relative;padding:0 0 10px 30px;margin-bottom:14px;}
-  .node::before{content:"";position:absolute;left:-9px;top:6px;width:16px;height:16px;border-radius:50%;
-    background:var(--terra);border:3px solid var(--paper);}
-  details.node summary{cursor:pointer;list-style:none;font-weight:600;font-size:19px;}
-  details.node summary::-webkit-details-marker{display:none;}
-  .node .when{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-deep);font-weight:600;}
-  .node .body{margin-top:10px;font-size:16px;color:#3a352d;max-width:60ch;}
-  details[open] summary .plus{transform:rotate(45deg);}
-  .plus{display:inline-block;color:var(--terra);font-weight:700;margin-left:6px;transition:transform .15s;}
-  .microflow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center;}
-  .microflow .step{background:var(--card);border:1px dashed var(--terra);border-radius:8px;padding:6px 11px;font-size:13px;}
+/* the scaling juncture — Claude Design fork chart, mapped to site tokens */
+.forkwrap{max-width:620px;margin:40px auto 0;position:relative;}
+.forkwrap svg{width:100%;height:auto;display:block;overflow:visible;}
+.fork-title{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.3vw,28px);line-height:1.06;margin-bottom:18px;}
+.fork-title .terra{color:var(--terra);}
+#efc-root{position:relative;width:100%;margin:0;}
+#efc-replay{
+  position:absolute;top:4px;right:6px;z-index:2;display:inline-flex;align-items:center;gap:6px;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.04em;
+  color:var(--terra-deep);background:var(--paper-2);border:2px solid var(--ink);
+  border-radius:999px;box-shadow:3px 3px 0 rgba(27,26,23,.12);padding:7px 14px;cursor:pointer;
+  transition:transform .15s ease, background .18s ease, color .18s ease;
+}
+#efc-replay:hover{background:var(--terra);color:#fff;transform:translateY(-1px);}
+@keyframes efcTwinkle{0%{transform:scale(0) rotate(-60deg);opacity:0;}55%{opacity:1;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
 
-  /* ---- horizontal timeline ---- */
-  .htl{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:18px;}
-  .htl::before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:var(--terra);z-index:0;}
-  .tnode{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:9px;}
-  .tnode .dot{width:16px;height:16px;border-radius:50%;background:var(--terra);border:3px solid var(--paper);}
-  .tnode .when{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-deep);font-weight:700;}
-  .tnode h3{font-size:19px;line-height:1.2;margin-top:2px;}
-  .tnode p{font-size:14.5px;color:#3a352d;}
-  .polaroid{background:#fff;border:1px solid rgba(27,26,23,.16);padding:9px 9px 0;
-    box-shadow:3px 6px 14px rgba(27,26,23,.16);width:200px;max-width:100%;align-self:center;}
-  .polaroid .pframe{position:relative;aspect-ratio:4/5;background:var(--terra);overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .polaroid .pframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .polaroid .pph{font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:15px;}
-  .polaroid .pcap{display:block;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--ink);padding:8px 4px 12px;}
-  .polaroid.r-a{transform:rotate(-3deg);} .polaroid.r-b{transform:rotate(2.5deg);} .polaroid.r-c{transform:rotate(-1.5deg);}
-  @media(max-width:760px){.htl{grid-template-columns:1fr;gap:28px;} .htl::before{display:none;} .polaroid{align-self:flex-start;}}
+/* "you, if:" checklist card */
+.ck{background:transparent;border:none;border-radius:0;box-shadow:none;padding:0 26px 16px;position:relative;overflow:visible;}
+.ck::before{content:"";position:absolute;left:-20px;top:0;bottom:0;width:2px;background:var(--pink);opacity:.65;}
+.ck-star{position:absolute;pointer-events:none;}
+.ck-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;padding-left:12px;}
+.ck-title{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.3vw,28px);line-height:1.06;}
+.ck-title .terra{color:var(--terra);}.ck-title .grn{color:var(--green);}
+.ck-sub{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--terra-deep);font-size:15px;margin-top:6px;}
+.ck-reset{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;color:var(--terra-deep);background:transparent;border:none;cursor:pointer;opacity:.72;flex:none;margin-top:4px;}
+.ck-reset:hover{opacity:1;text-decoration:underline;}
+.ck-list{padding-left:12px;}
+.ck-row{display:flex;align-items:flex-start;gap:13px;padding:11px 4px;border-bottom:1.5px dashed rgba(27,26,23,.16);cursor:pointer;transition:background .18s ease;}
+.ck-row:last-child{border-bottom:none;}
+.ck-row:hover{background:rgba(221,121,88,.06);}
+.ck-box{flex:0 0 26px;height:26px;margin-top:1px;display:inline-block;}
+.ck-box svg{width:26px;height:26px;overflow:visible;display:block;}
+.ck-tick{stroke-dasharray:44;stroke-dashoffset:44;transition:stroke-dashoffset .35s ease;}
+.ck-txt{font-size:13px;line-height:1.4;color:#1B1A17;font-weight:500;transition:color .3s ease,text-decoration-color .35s ease;text-decoration-line:line-through;text-decoration-thickness:2.5px;text-decoration-color:transparent;}
+.ck-count{margin:16px 12px 2px;padding-top:14px;border-top:2px dashed rgba(27,26,23,.2);font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:15.5px;line-height:1.35;color:var(--terra-deep);min-height:1.4em;transition:opacity .25s ease;}
+/* section 2 side-by-side layout */
+.wrap-wide{max-width:1010px;}
+.wrap-xwide{max-width:1140px;}
+.juncture-layout{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;margin-top:34px;}
+.juncture-layout .forkwrap{flex:1 1 460px;min-width:0;max-width:none;margin:0;}
+.juncture-layout .ck{flex:1 1 430px;min-width:0;}
+@media(prefers-reduced-motion:reduce){.ck-tick,.ck-txt,.ck-count{transition:none;}}
 
-  /* ---- fun facts ---- */
-  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;}
-  .fact{border:1.5px solid var(--ink);border-radius:12px;padding:18px 18px 20px;
-    box-shadow:3px 4px 0 rgba(27,26,23,.10);font-size:15px;line-height:1.42;color:var(--ink);}
-  .fact .fb{font-family:'Fraunces',serif;font-style:italic;color:var(--terra);font-size:22px;display:block;margin-bottom:6px;line-height:1;}
-  .fact.y{background:var(--yellow);} .fact.p{background:var(--pink);} .fact.g{background:#cfe3c3;} .fact.c{background:var(--card);} .fact.w{background:#fff;}
-  .proofshot{margin-top:2px;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:2px 3px 0 rgba(27,26,23,.10);max-width:100%;}
-  .proofshot img{display:block;width:100%;height:auto;}
-  .facts-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:30px;align-items:center;margin-top:20px;}
-  .photo-frame{background:#fff;border:1px solid rgba(27,26,23,.16);padding:10px 10px 0;box-shadow:4px 8px 18px rgba(27,26,23,.18);transform:rotate(-2deg);max-width:430px;justify-self:center;}
-  .photo-frame img{display:block;width:100%;height:auto;}
-  .photo-frame .pcap{display:block;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:17px;padding:9px 4px 12px;color:var(--ink);}
-  @media(max-width:820px){.facts-wrap{grid-template-columns:1fr;}}
+/* section 3 — how it works (loop + breaks/fixes + workforce, Claude Design) */
+.how-hero{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:-8px;}
+.how-stack{display:flex;flex-direction:column;align-items:center;gap:64px;margin-top:76px;}
+.loopwrap{width:100%;max-width:600px;margin:0 auto;min-width:0;position:relative;}
+.loopquote{max-width:27ch;}
+.loopquote .lq-mark{display:block;font-family:'Fraunces',serif;font-weight:600;font-style:italic;font-size:60px;line-height:.5;color:var(--terra);height:32px;margin-bottom:8px;}
+.loopquote p{font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(15px,1.7vw,20px);line-height:1.5;color:var(--ink);margin:0;letter-spacing:-0.01em;min-height:5em;}
+.loopquote .lq-hl{font-weight:600;padding:1px 3px;border-radius:3px;background:linear-gradient(transparent 10%, rgba(221,121,88,.34) 10% 88%, transparent 88%);-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+.lq-caret{display:inline-block;width:2px;height:1.05em;background:var(--ink);margin-left:2px;vertical-align:-3px;}
+@media(max-width:860px){.how-hero{grid-template-columns:1fr;gap:30px;}}
+@media(prefers-reduced-motion:reduce){.lq-caret{display:none;}}
+.loopquote .lq-btn{margin-top:22px;}
+.statement-band{background:var(--terra);background-image:repeating-linear-gradient(-45deg, rgba(255,255,255,.075) 0 15px, rgba(255,255,255,0) 15px 30px);padding:78px 0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);}
+.statement{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(30px,5vw,58px);line-height:1.04;color:#F7F0E4;margin:0;max-width:17ch;}
+.statement .ink{color:var(--ink);}
+.statement-band.dark{background:var(--ink);background-image:repeating-linear-gradient(-45deg, rgba(221,121,88,.11) 0 15px, rgba(221,121,88,0) 15px 30px);}
+.statement-band.dark .statement{color:#F7F0E4;}
+.statement-band.dark .statement .terra{color:var(--terra);}
+.endcta{text-align:center;}
+.endcta .lead{margin:10px auto 0;}
+.endcta .endbtnrow{margin-top:28px;}
+footer{border-top:2px solid var(--ink);padding:46px 0 42px;margin-top:20px;}
+footer .frow{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+footer .fmark{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--ink);font-size:26px;text-decoration:none;display:block;line-height:1;}
+footer .fsub{font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--terra-deep);margin-top:7px;}
+footer .flinks{display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+footer .flinks a{color:#5a564e;text-decoration:none;font-size:14px;}
+footer .flinks a:hover{color:var(--terra-deep);}
+footer .legal{margin-top:28px;line-height:1.62;color:#8a857c;font-size:12.5px;}
+footer .legal .cright{display:block;color:#5a564e;font-weight:600;margin-bottom:3px;}
+.loopwrap svg{width:100%;height:auto;display:block;overflow:visible;}
+@keyframes lpSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes lpPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.14);}}
+.bf{flex:none;width:100%;max-width:600px;margin:0 auto;min-width:0;position:relative;}
+.bf-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px;padding-left:0;}
+.bf-title{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(17px,1.9vw,22px);line-height:1.06;}
+.bf-title .terra{color:var(--terra);}
+.bf-ul{display:block;height:8px;margin-top:4px;width:min(280px,90%);}
+.bf-replay{display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--terra-deep);background:var(--paper-2);border:2px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 rgba(27,26,23,.12);padding:6px 12px;cursor:pointer;flex:none;transition:transform .15s ease,background .18s ease,color .18s ease;}
+.bf-replay:hover{background:var(--terra);color:#fff;transform:translateY(-1px);}
+.bf-rows{list-style:none;padding-left:0;}
+.bf-row{display:grid;grid-template-columns:auto 210px auto auto;justify-content:start;align-items:center;gap:11px;padding:12px 2px;border-bottom:1.5px dashed rgba(27,26,23,.16);}
+.bf-row:last-child{border-bottom:none;}
+.bf-mark{width:20px;height:20px;border:2px solid var(--ink);border-radius:6px;flex:none;box-shadow:2px 2px 0 rgba(27,26,23,.12);}
+.bf-mark.m0,.bf-mark.m1,.bf-mark.m2,.bf-mark.m3,.bf-mark.m4,.bf-mark.m5{background:#FFFFFF;}
+.bf-prob{font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;}
+.bf-arrow{color:var(--terra-deep);font-weight:800;font-size:15px;}
+.bf-fix{position:relative;display:inline-block;white-space:nowrap;}
+.bf-hl{position:absolute;left:-5px;right:-5px;top:14%;bottom:14%;border-radius:3px;transform:scaleX(0);transform-origin:left center;z-index:0;background:rgba(221,121,88,.38);}
+.bf-row:nth-child(2) .bf-hl{background:rgba(233,196,106,.62);}
+.bf-row:nth-child(3) .bf-hl{background:rgba(229,169,169,.55);}
+.bf-row:nth-child(4) .bf-hl{background:rgba(106,143,107,.42);}
+.bf-row:nth-child(5) .bf-hl{background:rgba(221,121,88,.38);}
+.bf-row:nth-child(6) .bf-hl{background:rgba(233,196,106,.62);}
+.bf-fixt{position:relative;z-index:1;font-size:12.5px;font-weight:700;color:var(--ink);}
+.bf.play .bf-hl{transform:scaleX(1);transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+.bf.play .bf-row:nth-child(1) .bf-hl{transition-delay:0s;}
+.bf.play .bf-row:nth-child(2) .bf-hl{transition-delay:.12s;}
+.bf.play .bf-row:nth-child(3) .bf-hl{transition-delay:.24s;}
+.bf.play .bf-row:nth-child(4) .bf-hl{transition-delay:.36s;}
+.bf.play .bf-row:nth-child(5) .bf-hl{transition-delay:.48s;}
+.bf.play .bf-row:nth-child(6) .bf-hl{transition-delay:.60s;}
+.wm{background:transparent;border:none;border-radius:0;box-shadow:none;padding:34px 40px 30px;position:relative;overflow:hidden;max-width:920px;margin:60px auto 0;}
+.wm-star{position:absolute;pointer-events:none;}
+.wm-eyebrow{text-align:center;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:6px;}
+.wm-title{text-align:center;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(22px,3vw,32px);line-height:1.05;margin-bottom:26px;}
+.wm-title .terra{color:var(--terra);}.wm-title .grn{color:var(--green);}
+.wm-chart{width:100%;height:auto;display:block;overflow:visible;}
+.wm-replay{position:absolute;top:18px;right:20px;z-index:4;display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.04em;color:var(--terra-deep);background:var(--paper-2);border:2px solid var(--ink);border-radius:999px;box-shadow:3px 3px 0 rgba(27,26,23,.12);padding:6px 12px;cursor:pointer;transition:transform .15s ease,background .18s ease,color .18s ease;}
+.wm-replay:hover{background:var(--terra);color:#fff;transform:translateY(-1px);}
+@media(prefers-reduced-motion:reduce){.bf-hl{transform:scaleX(1)!important;transition:none!important;}}
 
-  /* ---- cards grid ---- */
-  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-  .grid-tools{margin-top:10px;}
-  @media(max-width:720px){.grid2{grid-template-columns:1fr;}}
-  .card{background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:24px;
-    box-shadow:4px 4px 0 rgba(27,26,23,.08);}
-  .num{font-family:'Anton',sans-serif;font-size:34px;color:var(--terra);line-height:1;}
-  .card h3{font-size:20px;margin:8px 0 8px;}
-  .card p{font-size:15px;color:#3a352d;}
+/* section 4 — offers (Claude Design, big-number editorial) */
+.blk{margin-top:16px;}
+.blk-label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:5px;}
+.blk p{font-size:12.5px;color:var(--muted);max-width:66ch;line-height:1.55;}
+.io-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.io{border:2px dashed rgba(27,26,23,.28);border-radius:12px;padding:14px 16px;}
+.io.not{background:rgba(27,26,23,.035);}
+.io ul{list-style:none;margin-top:4px;}
+.io li{font-size:12px;line-height:1.5;padding:3px 0 3px 15px;position:relative;color:#37352f;}
+.io li::before{content:"·";position:absolute;left:3px;top:2px;color:var(--terra-deep);font-weight:800;}
+.io-note{font-size:11.5px;color:var(--muted);margin-top:9px;font-style:italic;line-height:1.5;}
+.meta-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;}
+.meta-row>div{flex:1 1 220px;}
+.prereq{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:14px;max-width:74ch;line-height:1.5;}
+.cta-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:2px dashed rgba(27,26,23,.18);}
+.price-wrap{display:flex;flex-direction:column;gap:2px;}
+.price-line{font-family:'Anton',sans-serif;font-size:22px;line-height:1;}
+.pn-line{font-size:11.5px;color:var(--muted);max-width:46ch;line-height:1.4;}
+.cta-btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;border:2px solid var(--ink);border-radius:999px;box-shadow:4px 4px 0 var(--terra-deep);padding:11px 22px;font-weight:600;font-size:13px;transition:transform .15s ease;flex:none;}
+.cta-btn:hover{transform:translateY(-1px);}
+.badge{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:2px 11px;font-size:10.5px;font-weight:700;letter-spacing:.04em;background:var(--terra);color:#fff;}
+.badge.cap{background:var(--green);color:#fff;}
+.pricepill{display:inline-block;background:var(--ink);color:#F4EFE4;border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;white-space:nowrap;}
+.chev{transition:transform .25s ease;font-size:13px;color:var(--terra-deep);}
+[data-card].open .chev{transform:rotate(180deg);}
+.o3-list{display:flex;flex-direction:column;gap:18px;margin-top:36px;}
+.o3-card{background:var(--paper-2);border:2px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 rgba(27,26,23,.12);overflow:hidden;}
+.o3-head{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;width:100%;text-align:left;background:none;border:none;font-family:inherit;color:inherit;cursor:pointer;padding:22px 26px;}
+.o3-num{font-family:'Anton',sans-serif;font-size:clamp(54px,7vw,82px);line-height:.76;flex:none;letter-spacing:-.02em;}
+.o3-card:nth-child(1) .o3-num{color:var(--terra);}
+.o3-card:nth-child(2) .o3-num{color:#c99a3a;}
+.o3-card:nth-child(3) .o3-num{color:var(--green);}
+.o3-card:nth-child(4) .o3-num{color:var(--terra-deep);}
+.o3-body{min-width:0;}
+.o3-toprow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.o3-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:23px;line-height:1;}
+.o3-promise{font-size:13px;color:var(--muted);margin-top:9px;max-width:58ch;}
+.o3-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;flex-wrap:wrap;}
+.o3-see{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--terra-deep);letter-spacing:.03em;text-transform:uppercase;}
+.o3-detail{display:none;padding:0 26px 26px;}
+.o3-card.open .o3-detail{display:block;}
+@media(max-width:640px){.io-grid{grid-template-columns:1fr;}}
 
-  /* ---- who I work with ---- */
-  .who{background:var(--ink);color:var(--paper);border-radius:18px;padding:46px;}
-  .who p{font-size:clamp(20px,2.6vw,28px);line-height:1.4;max-width:30ch;font-weight:500;}
-  .who .kicker{color:var(--yellow);}
+/* section 5 — founder tax calculator */
+.taxcard{display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:stretch;margin-top:36px;}
+.taxinputs{display:flex;flex-direction:column;gap:22px;}
+.taxinputs label{font-weight:600;font-size:14px;display:block;}
+.taxsub{display:block;font-weight:400;font-size:12px;color:#5a564e;margin-top:2px;}
+.taxinputs input{width:100%;margin-top:10px;padding:12px 16px;border:2px solid var(--ink);border-radius:12px;font-family:'Inter',sans-serif;font-size:16px;background:var(--paper-2);color:var(--ink);box-shadow:3px 3px 0 rgba(27,26,23,.1);}
+.taxinputs input:focus{outline:none;border-color:var(--terra-deep);}
+.taxresult{background:var(--ink);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--terra-deep);padding:28px 26px;display:flex;flex-direction:column;justify-content:center;}
+.taxlabel{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--yellow);font-size:16px;}
+.taxbig{font-family:'Anton',sans-serif;font-size:clamp(44px,7vw,66px);line-height:.95;color:var(--terra);margin:6px 0 10px;}
+.taxper{font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:#F4EFE4;}
+.taxexpl{font-size:12px;color:#cfc7b6;line-height:1.5;}
+.taxnote{font-size:12.5px;color:#5a564e;}
+@media(max-width:680px){.taxcard{grid-template-columns:1fr;}}
 
-  /* ---- work folders ---- */
-  details.folder{background:var(--card);border:1.5px solid var(--ink);border-radius:12px;
-    margin-bottom:14px;box-shadow:3px 3px 0 rgba(27,26,23,.08);overflow:hidden;}
-  details.folder summary{cursor:pointer;list-style:none;padding:20px 22px;display:flex;align-items:center;gap:14px;}
-  details.folder summary::-webkit-details-marker{display:none;}
-  .tab{background:var(--yellow);border:1.5px solid var(--ink);border-radius:5px 5px 0 0;
-    padding:3px 12px;font-size:12px;font-weight:700;transform:translateY(-2px);}
-  .folder .oneliner{font-size:15px;color:#3a352d;flex:1;}
-  .folder .detail{padding:0 22px 22px;font-size:15px;color:#3a352d;}
-  .folder .detail ul{margin:8px 0 0 18px;}
-  .folder .detail li{margin-bottom:8px;}
+/* section 6 — proof folder tabs */
+.foldertabs{margin-top:36px;}
+.ftabs{display:flex;gap:8px;padding-left:10px;position:relative;z-index:2;flex-wrap:wrap;}
+.ftab{border:2px solid var(--ink);border-bottom:none;border-radius:11px 11px 0 0;padding:10px 20px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink);transform:translateY(4px);transition:transform .15s ease;}
+.ftab[data-tab="0"]{background:var(--terra);color:#fff;}
+.ftab[data-tab="1"]{background:var(--yellow);}
+.ftab[data-tab="2"]{background:var(--green);color:#fff;}
+.ftab.active{transform:translateY(0);margin-bottom:-2px;}
+.ftab:not(.active){filter:brightness(.93) saturate(.9);}
+.fpanel{background:var(--paper-2);border:2px solid var(--ink);border-radius:0 14px 14px 14px;box-shadow:5px 5px 0 rgba(27,26,23,.12);padding:30px;position:relative;z-index:1;}
+.fcase{display:none;}
+.fcase.active{display:block;}
+.fcase h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:20px;line-height:1.1;}
+.fcase p{font-size:13px;color:var(--muted);margin-top:10px;max-width:64ch;}
+.fcase-cap{display:block;font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--terra-deep);font-size:13px;margin-top:20px;}
+.fcase-visual{margin-top:10px;}
+.fcase-visual svg{width:100%;height:auto;display:block;overflow:visible;}
+.fcase-shot{width:100%;max-width:660px;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 rgba(27,26,23,.12);display:block;margin-top:22px;background:linear-gradient(135deg,var(--pink),var(--yellow));}
 
-  /* ---- product card ---- */
-  .product{background:var(--pink);border:1.5px solid var(--ink);border-radius:14px;padding:26px;
-    margin-top:52px;box-shadow:4px 4px 0 rgba(27,26,23,.1);}
-  .product .price{font-family:'Anton',sans-serif;font-size:30px;}
-  .product .eyebrow{color:var(--terra-deep);}
-  .product ul{margin:14px 0 14px 18px;font-size:15px;}
-  .product li{margin-bottom:6px;}
-  .product .smallprint{font-size:12px;color:#5a5247;margin-top:8px;max-width:50ch;}
-  .product .ctacap{font-size:12px;color:#5a5247;margin-top:8px;font-style:italic;}
+/* section 7 — story timeline (exact live-site) */
+.timeline{display:flex;flex-direction:column;border-left:3px solid var(--terra);padding-left:26px;margin-top:44px;}
+.era{position:relative;padding:0 0 36px;}
+.era::before{content:"";position:absolute;left:-35px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--paper);border:3px solid var(--terra);}
+.era .when{font-family:'Fraunces',serif;font-style:italic;color:var(--terra-deep);font-size:14px;}
+.era h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:16px;margin-top:2px;}
+.era p{font-size:13px;color:#4c4a45;margin-top:6px;}
+.era img{width:170px;height:110px;object-fit:cover;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 rgba(27,26,23,.12);margin-top:12px;display:block;background:linear-gradient(135deg,var(--pink),var(--yellow));}
 
-  /* ---- tools sticky note ---- */
-  .sticky{background:var(--yellow);border-radius:4px;padding:30px 34px;max-width:640px;
-    transform:rotate(-1deg);box-shadow:5px 6px 14px rgba(27,26,23,.12);}
-  .sticky .kicker{color:var(--terra-deep);}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-  .tag{background:rgba(255,255,255,.6);border:1px solid var(--ink);border-radius:6px;padding:5px 11px;font-size:14px;font-weight:500;}
+/* section 8 — fun facts (live-site polaroid + plain white cards) */
+.funrow{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;margin-top:40px;}
+.funcards{flex:1 1 360px;display:flex;flex-direction:column;gap:16px;min-width:0;}
+.funcard{background:var(--paper-2);border:2px solid var(--ink);border-radius:14px;box-shadow:4px 4px 0 rgba(27,26,23,.12);padding:20px 22px;}
+.funcard .fh{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:16px;line-height:1.1;margin-bottom:6px;}
+.funcard p{font-size:13px;color:#4c4a45;line-height:1.5;}
+.polaroid{background:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(27,26,23,.12);padding:12px 12px 42px;width:250px;flex:0 0 auto;}
+.polaroid img{width:100%;height:250px;object-fit:cover;border:1px solid var(--ink);display:block;background:linear-gradient(135deg,var(--pink),var(--yellow));}
+.polaroid .cap{font-family:'Fraunces',serif;font-style:italic;font-size:13px;margin-top:10px;text-align:center;}
+/* story + fun facts, editorial upgrade to match v3 */
+.story-eras{display:flex;flex-direction:column;gap:30px;margin-top:44px;}
+.era2{display:grid;grid-template-columns:1fr 250px;gap:32px;align-items:center;background:#F5EEE0;border-radius:18px;padding:26px 30px;}
+.era2:nth-child(even){grid-template-columns:250px 1fr;background:#F1EAE6;}
+.era2:nth-child(even) .era2-photo{order:-1;}
+.era2-num{font-family:'Anton',sans-serif;font-size:32px;color:var(--terra);line-height:.9;display:block;margin-bottom:8px;}
+.era2-when{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--terra-deep);font-size:15px;display:block;margin-bottom:5px;}
+.era2 h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(20px,2.6vw,29px);line-height:1.03;margin:0 0 9px;}
+.era2 p{font-size:14px;color:#4c4a45;line-height:1.56;margin:0;max-width:54ch;}
+.era2-photo img{width:100%;height:190px;object-fit:cover;border-radius:12px;display:block;background:linear-gradient(135deg,var(--pink),var(--yellow));}
+@media(max-width:680px){.era2,.era2:nth-child(even){grid-template-columns:1fr;}.era2:nth-child(even) .era2-photo{order:0;}}
+.funrow2{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;margin-top:44px;}
+.funcards2{flex:1 1 380px;display:flex;flex-direction:column;gap:20px;min-width:0;}
+.funcard2{background:var(--paper-2);border-radius:16px;padding:22px 24px;}
+.funcard2:nth-child(1){background:#FCEEE7;}
+.funcard2:nth-child(2){background:#FBF3DC;}
+.funcard2:nth-child(3){background:#E9F0E4;}
+.funcard2 .fh2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(18px,2.2vw,23px);line-height:1.06;margin-bottom:7px;}
+.funcard2 p{font-size:13.5px;color:#4c4a45;line-height:1.5;margin:0;}
+.polaroid2{background:#fff;border-radius:6px;padding:14px 14px 42px;width:290px;flex:0 0 auto;}
+.polaroid2 img{width:100%;height:290px;object-fit:cover;border-radius:3px;display:block;background:linear-gradient(135deg,var(--pink),var(--yellow));}
+.polaroid2 .cap2{font-family:'Fraunces',serif;font-style:italic;font-size:14px;margin-top:12px;text-align:center;}
 
-  /* ---- closing ---- */
-  .closing{text-align:center;}
-  .closing h2{font-size:clamp(28px,4.4vw,48px);max-width:18ch;margin:0 auto 14px;}
-  .closing p{font-size:18px;max-width:44ch;margin:0 auto 26px;color:#3a352d;}
+/* diagram frame (section 3) */
+.diagram{
+  background:var(--paper-2);border:2px solid var(--ink);border-radius:14px;
+  box-shadow:5px 5px 0 rgba(27,26,23,.12);padding:30px 28px;margin-top:34px;
+}
+.diagram .dlabel{display:inline-block;background:var(--ink);color:#F4EFE4;border-radius:999px;padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.05em;margin-bottom:14px;}
+.forkcopy{font-size:13.5px;color:var(--muted);margin-top:14px;padding-top:14px;border-top:2px dashed rgba(27,26,23,.25);max-width:60ch;}
 
-  /* ---- footer ---- */
-  footer{border-top:1px solid var(--grid);padding:40px 0 50px;font-size:14px;}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:flex-start;}
-  footer a{text-decoration:none;}
-  footer a:hover{color:var(--terra-deep);}
-  .footlinks{display:flex;flex-wrap:wrap;gap:16px;}
-  .legal{font-size:12px;color:#6b6356;margin-top:14px;line-height:1.6;width:100%;}
+/* loop diagram (real from sampler) */
+.loopflow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px;}
+.lnode{position:relative;border:2px solid var(--ink);border-radius:12px;background:var(--paper);padding:10px 14px;font-size:12.5px;font-weight:700;}
+.lnode .flag{
+  position:absolute;top:-13px;right:-9px;background:var(--terra);color:#fff;border:2px solid var(--ink);
+  border-radius:999px;font-size:10px;font-weight:800;padding:1px 8px;
+}
+.larrow{color:var(--terra-deep);font-weight:800;font-size:16px;}
+.loopback{margin-top:14px;font-size:12px;color:var(--muted);font-style:italic;max-width:none;}
 
-  /* ---- decorative elements used throughout ---- */
-  section{position:relative;overflow:hidden;}
-  .deco{position:absolute;pointer-events:none;z-index:0;}
-  .wrap{position:relative;z-index:1;}
-  .washi{height:24px;width:130px;opacity:.9;border-radius:2px;box-shadow:0 1px 2px rgba(27,26,23,.12);}
-  .washi.pink{background:repeating-linear-gradient(45deg,var(--pink) 0 7px,#f8d6e0 7px 14px);}
-  .washi.yellow{background:repeating-linear-gradient(45deg,var(--yellow) 0 7px,#fff7c2 7px 14px);}
-  .washi.green{background:repeating-linear-gradient(45deg,#bcd6ae 0 7px,#cfe3c3 7px 14px);}
-  .burst{font-family:'Fraunces',serif;font-style:italic;color:var(--terra);font-size:34px;line-height:1;}
-  .note-pin{display:inline-block;background:var(--yellow);border:1.5px solid var(--ink);border-radius:3px;
-    padding:9px 13px;font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--ink);
-    box-shadow:3px 4px 0 rgba(27,26,23,.14);transform:rotate(-2deg);}
+.leakgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;margin-top:22px;}
+.leak{border:2px dashed rgba(27,26,23,.35);border-radius:12px;padding:15px 16px;background:rgba(233,196,106,.1);}
+.leak h3{font-size:12.5px;}
+.leak p{font-size:12px;color:var(--muted);margin-top:5px;max-width:none;}
+.leak .fix{margin-top:9px;font-size:11.5px;font-weight:700;color:var(--terra-deep);}
 
-  /* tint a few sections so color runs the whole page */
-  #story{background:linear-gradient(180deg,rgba(251,242,164,.22),transparent 60%);}
-  #work{background:linear-gradient(180deg,rgba(244,196,212,.18),transparent 45%);}
-  #tools{background:linear-gradient(180deg,rgba(94,140,74,.10),transparent 60%);}
+/* org chart (real from sampler) */
+.chart{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:6px;}
+.cnode{border:2px solid var(--ink);border-radius:999px;padding:8px 20px;font-size:12.5px;font-weight:700;background:var(--paper-2);box-shadow:3px 3px 0 rgba(27,26,23,.12);text-align:center;}
+.cnode.founder{background:var(--pink);}
+.cnode.me{background:var(--ink);color:#F4EFE4;}
+.cline{width:2px;height:20px;background:var(--ink);}
+.lanes{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.lane{border:2px solid var(--ink);border-radius:12px;padding:8px 13px;font-size:11.5px;font-weight:700;margin-top:18px;position:relative;}
+.lane::before{content:"";position:absolute;top:-20px;left:50%;width:2px;height:18px;background:var(--ink);}
+.lane.l1{background:var(--yellow);}
+.lane.l2{background:var(--terra);color:#fff;}
+.lane.l3{background:var(--green);color:#fff;}
+.lane.l4{background:var(--paper-2);}
+.chartcap{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--terra-deep);font-size:14px;margin-top:22px;text-align:center;max-width:52ch;margin-left:auto;margin-right:auto;}
 
-  /* coloured what-I-do cards */
-  .card.y{border-top:6px solid var(--yellow);}
-  .card.p{border-top:6px solid var(--pink);}
-  .card.g{border-top:6px solid var(--green);}
-  .card.t{border-top:6px solid var(--terra);}
+/* proof — real folder cards + real screenshots */
+.folders{margin-top:60px;display:flex;flex-direction:column;gap:52px;}
+.folder{
+  background:var(--paper-2);border:2px solid var(--ink);border-radius:0 14px 14px 14px;
+  box-shadow:4px 4px 0 rgba(27,26,23,.12);padding:26px;position:relative;
+  display:grid;grid-template-columns:1fr 260px;gap:26px;align-items:center;
+}
+.folder .tab{
+  position:absolute;top:-30px;left:-2px;background:var(--terra);color:#fff;
+  border:2px solid var(--ink);border-bottom:none;border-radius:10px 10px 0 0;
+  padding:5px 18px;font-size:12px;font-weight:600;
+}
+.folder p{font-size:13px;color:var(--muted);max-width:52ch;margin-top:8px;}
+.folder .shot{width:100%;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 rgba(27,26,23,.12);display:block;background:linear-gradient(135deg,var(--pink),var(--yellow));}
+@media(max-width:640px){.folder{grid-template-columns:1fr;}.folder .shot{order:-1;}}
 
-  /* ---- case studies ---- */
-  .case{margin:60px 0;padding-top:8px;}
-  .case + .case{border-top:1px dashed var(--terra);padding-top:46px;}
-  .case-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
-  .case-tab{background:var(--yellow);border:1.5px solid var(--ink);border-radius:6px;padding:5px 13px;
-    font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
-  .case-tab.pink{background:var(--pink);}
-  .case-tab.green{background:#cfe3c3;}
-  .case-no{font-family:'Anton',sans-serif;color:var(--terra);font-size:26px;}
-  .case h3{font-size:clamp(22px,3vw,32px);margin:6px 0 8px;}
-  .case .lead{font-size:17px;color:#3a352d;max-width:62ch;margin-bottom:8px;}
-  .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;margin-top:24px;}
-  .case-grid > *{min-width:0;}
-  .case-grid.media-left > .media{order:-1;}
-  .case-grid.center{grid-template-columns:1fr;max-width:760px;margin-left:auto;margin-right:auto;}
-  @media(max-width:820px){.case-grid{grid-template-columns:1fr;}}
-
-  /* image placeholders */
-  .ph{border:2px dashed var(--terra);border-radius:12px;
-    background:repeating-linear-gradient(45deg,rgba(221,121,88,.06) 0 12px,transparent 12px 24px);
-    min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;color:var(--terra-deep);padding:22px;gap:8px;}
-  .ph .picon{font-size:26px;}
-  .ph .label{font-family:'Fraunces',serif;font-style:italic;font-size:23px;line-height:1.1;}
-  .ph .hint{font-size:12px;color:#6b6356;max-width:32ch;}
-  .shot{border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:4px 5px 0 rgba(27,26,23,.10);background:var(--card);}
-  .shot img{display:block;width:100%;height:auto;}
-
-  /* diagram + tree panels */
-  .panel{background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:22px;
-    box-shadow:5px 5px 0 rgba(27,26,23,.08);min-width:0;}
-  .panel svg{width:100%;height:auto;display:block;}
-  .panel .cap{font-size:13px;color:#6b6356;margin-top:12px;text-align:center;}
-  .panel-title{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:12px;}
-
-  /* folder tree */
-  .tree{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13.5px;line-height:1.95;white-space:pre;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  @media(max-width:560px){.tree{font-size:11px;line-height:1.85;}}
-  .tree .root{font-weight:700;color:var(--ink);}
-  .tree .f{color:var(--terra-deep);font-weight:700;}
-  .tree .note{color:#8a8275;}
-  .pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
-  .pill{background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;}
-  .pill.y{background:var(--yellow);}
-  .pill.p{background:var(--pink);}
-  .pill.g{background:#cfe3c3;}
-  .swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
-  .sw{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;}
-  .sw i{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--ink);display:inline-block;}
-
-  /* ---- collapsible case folders (Work) ---- */
-  .casefolder{position:relative;margin:34px 0 0;background:var(--card);border:2px solid var(--ink);
-    border-radius:3px 14px 14px 14px;box-shadow:5px 6px 0 rgba(27,26,23,.10);}
-  .casefolder > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 22px;}
-  .casefolder > summary::-webkit-details-marker{display:none;}
-  .casefolder > summary:hover .fname{color:var(--terra-deep);}
-  .tabtop{position:absolute;top:-21px;left:22px;height:23px;display:flex;align-items:center;padding:0 16px;
-    border:2px solid var(--ink);border-bottom:none;border-radius:9px 9px 0 0;
-    font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
-  .tabtop.yellow{background:var(--yellow);}
-  .tabtop.pink{background:var(--pink);}
-  .tabtop.green{background:#cfe3c3;}
-  .fname{flex:1;font-size:clamp(17px,2.3vw,23px);font-weight:700;color:var(--ink);line-height:1.2;}
-  .fchev{font-family:'Anton',sans-serif;font-size:26px;color:var(--terra);line-height:1;transition:transform .15s;}
-  .casefolder[open] .fchev{transform:rotate(45deg);}
-  .fbody{padding:2px 22px 28px;}
-  .fbody > .lead:first-child{margin-top:0;}
-
-  /* ---- who I work with: post-it ---- */
-  #who{padding-top:56px;padding-bottom:56px;}
-  .postit{position:relative;max-width:760px;margin:0 auto;background:var(--yellow);
-    border:2px solid var(--ink);border-radius:7px;padding:52px 50px;
-    box-shadow:9px 11px 0 rgba(27,26,23,.16);
-    background-image:linear-gradient(rgba(27,26,23,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(27,26,23,.07) 1px,transparent 1px);
-    background-size:32px 32px;}
-  .postit .tape{position:absolute;top:-15px;left:50%;width:170px;height:32px;
-    transform:translateX(-50%) rotate(-3deg);opacity:.92;border:1px solid rgba(27,26,23,.22);
-    background:repeating-linear-gradient(45deg,var(--pink) 0 9px,#f8d6e0 9px 18px);}
-  .burst-deco{position:absolute;font-family:'Fraunces',serif;font-style:italic;color:var(--green);font-size:32px;line-height:1;pointer-events:none;}
-  .who-kicker{font-family:'Fraunces',serif;font-style:italic;font-size:26px;color:var(--ink);margin-bottom:18px;}
-  .who-line{font-size:clamp(19px,2.3vw,25px);line-height:1.45;font-weight:500;color:var(--ink);margin:0 0 9px;max-width:36ch;}
-  .who-line b{font-weight:800;}
-  .hl-w,.hl-p,.hl-g{padding:0 .16em;border-radius:4px;font-weight:700;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
-  .hl-w{background:#fff;}
-  .hl-p{background:var(--pink);}
-  .hl-g{background:#cfe3c3;}
-  @media(max-width:560px){.postit{padding:44px 24px;} .who-line{max-width:none;}}
-
-  @media(max-width:760px){.deco{display:none;}}
-
-  @media(prefers-reduced-motion:reduce){
-    *{transition:none!important;scroll-behavior:auto!important;}
-  }
+/* motion */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal.tilt{transform:translateY(26px) rotate(5deg);}
+.reveal.tilt.in{transform:translateY(0) rotate(2deg);}
+.stagger > *{opacity:0;transform:translateY(26px);transition:opacity .6s ease, transform .6s ease;}
+.stagger.in > *{opacity:1;transform:translateY(0);}
+.stagger.in > *:nth-child(1){transition-delay:0s;}
+.stagger.in > *:nth-child(2){transition-delay:.11s;}
+.stagger.in > *:nth-child(3){transition-delay:.22s;}
+.stagger.in > *:nth-child(4){transition-delay:.33s;}
+.stagger.in > *:nth-child(5){transition-delay:.44s;}
+@media (prefers-reduced-motion: reduce){
+  .reveal,.stagger > *,.reveal.tilt{opacity:1;transform:none;transition:none;}
+}
 </style>
 </head>
-<body>
+<body id="top">
 
-<!-- ===================== NAV ===================== -->
+
 <nav>
-  <div class="wrap">
-    <a class="wordmark" href="#top">sinem.<small>Fractional Operations Manager</small></a>
-    <div class="navlinks">
-      <a class="text" href="#what">What I do</a>
-      <a class="text" href="#story">About</a>
-      <a class="text" href="#work">Work</a>
-      <a class="text" href="#who">Who I help</a>
-      <a class="text" href="#tools">Tools</a>
-      <a class="text" href="#facts">Fun facts</a>
-      <!-- REPLACE href with real booking link -->
-      <a class="btn btn-primary js-book" href="https://calendly.com/sineminflux/30min" target="_blank" rel="noopener">Book a call →</a>
-    </div>
+  <a class="mark" href="#top">sinem.</a>
+  <div class="links">
+    <a href="#juncture">The juncture</a>
+    <a href="#how">How it works</a>
+    <a href="#offers">Offers</a>
+    <a href="#proof">Proof</a>
+    <a href="#story">Story</a>
+    <a class="cta" href="https://calendly.com/sineminflux/30min">Book a call →</a>
   </div>
 </nav>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div class="hero-head">
-      <p class="eyebrow">AI-leveraged operations strategist</p>
-      <h1 class="display">I build the systems that get your business <span class="accent" style="font-size:0.6em;">out of your head.</span></h1>
+<!-- ========== 1 · HERO (real component, why-first copy) ========== -->
+<section class="hero">
+  <div class="wrap herogrid">
+    <div class="reveal">
+      <span class="sectiontag">AI-LEVERAGED OPERATIONS STRATEGIST</span>
+      <h1>You wanted <span class="grn">freedom</span>.<br>You built a <span class="terra nobreak">second job</span>.<span class="accentline">Let's change that.</span></h1>
+      <span class="proofline">7+ years in operations · <b>over $20M saved</b> across P&amp;G, Amazon and the UN</span>
+      <p class="lead">Hi, I'm Sinem. Fractional Operations Manager for founder-led businesses, coaches, and creatives.</p>
+      <div class="ctarow">
+        <a class="btn" href="#how">See how we'd work →</a>
+        <a class="btn ghost" href="https://calendly.com/sineminflux/30min">Book a 30-min call</a>
+      </div>
+      <p class="callshape">The call: we find your biggest bottleneck together and you leave with the fix order, whether or not we ever work together.</p>
     </div>
-    <div class="hero-photo">
-      <div class="hero-photo-ph">
-        <img src="headshot.webp" alt="Sinem Furtana" width="800" height="800" fetchpriority="high" decoding="async" onerror="this.style.display='none';" />
-        <span class="ph-note">Save your photo here<br>as <b>headshot.png</b></span>
-      </div>
-    </div>
-    <div class="hero-foot">
-      <p class="sub">Fractional Operations Manager for founder-led businesses, coaches, and creatives.</p>
-      <div class="chips">
-        <span class="chip">Find the bottleneck</span><span class="chip-arrow">→</span>
-        <span class="chip">Build the backend</span><span class="chip-arrow">→</span>
-        <span class="chip">Bring in AI where it benefits</span>
-      </div>
-      <p class="payoff">So you focus on the thing that actually matters: <b>your creative strategy.</b></p>
-      <div class="cta-row">
-        <a class="btn btn-primary js-book" href="https://calendly.com/sineminflux/30min" target="_blank" rel="noopener">Book a call →</a>
-        <a class="btn btn-ghost" href="#story">See how I work ↓</a>
-      </div>
+    <div class="roundphoto reveal">
+      <img src="headshot.webp" alt="Sinem Furtana">
+      <div class="cap">Sinem ✷</div>
     </div>
   </div>
+  <svg class="burst" viewBox="0 0 64 64" fill="none" stroke="#dd7958" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+    <line x1="32" y1="4" x2="32" y2="20"/><line x1="32" y1="44" x2="32" y2="60"/>
+    <line x1="4" y1="32" x2="20" y2="32"/><line x1="44" y1="32" x2="60" y2="32"/>
+    <line x1="12" y1="12" x2="23" y2="23"/><line x1="41" y1="41" x2="52" y2="52"/>
+    <line x1="52" y1="12" x2="41" y2="23"/><line x1="23" y1="41" x2="12" y2="52"/>
+  </svg>
 </section>
 
-<!-- ===================== WHAT I DO (A PROCESS MAP) ===================== -->
-<section id="what">
-  <div class="wrap">
-    <p class="kicker">What I do <span class="star">✷</span></p>
-    <h2 class="sec-h display">A process map</h2>
-    <div class="grid2">
-      <div class="card y"><div class="num">01</div><h3>Find the bottleneck</h3><p>Unwritten context, repeated steps, projects abandoned due to time constraints.</p></div>
-      <div class="card p"><div class="num">02</div><h3>Build the backend</h3><p>Systems, SOPs, and process digitisation.</p></div>
-      <div class="card g"><div class="num">03</div><h3>Bring in AI when it earns its place</h3><p>Your Claude Operating System, agents, and connectors.</p></div>
-      <div class="card t"><div class="num">04</div><h3>Optimise delivery</h3><p>Fewer touches, cleaner handoffs, work that ships without waiting on you.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== STORY ===================== -->
-<section id="story">
-  <div class="deco" style="top:30px;right:28px;transform:rotate(-7deg);"><div class="washi green"></div></div>
-  <div class="wrap">
-    <p class="kicker">About me <span class="star">✷</span></p>
-    <h2 class="sec-h display">Who I am, and how I got here</h2>
-    <p style="max-width:54ch;margin-bottom:28px;color:#3a352d;">I have spent my career making complicated operations run without the chaos.</p>
-
-    <div class="htl">
-      <div class="tnode">
-        <span class="dot"></span>
-        <span class="when">Supply chain</span>
-        <div class="polaroid r-a">
-          <div class="pframe"><img src="timeline-1.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none';" /><span class="pph">photo 1</span></div>
-          <span class="pcap">on the line</span>
-        </div>
-        <h3>I built systems that move things on time</h3>
-        <p>I managed complex systems that got products onto shelves on time, and I built and optimised supply chains that delivered food aid to crisis zones across MENA.</p>
-      </div>
-
-      <div class="tnode">
-        <span class="dot"></span>
-        <span class="when">The career break</span>
-        <div class="polaroid r-b">
-          <div class="pframe"><img src="timeline-2.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none';" /><span class="pph">photo 2</span></div>
-          <span class="pcap">stepping back</span>
-        </div>
-        <h3>I stepped back on purpose</h3>
-        <p>I built a Substack on career transitions that grew to around a thousand readers. I learned how to build an audience, a body of work, and a point of view.</p>
-      </div>
-
-      <div class="tnode">
-        <span class="dot"></span>
-        <span class="when">Now</span>
-        <div class="polaroid r-c">
-          <div class="pframe"><img src="timeline-3.webp" alt="" loading="lazy" decoding="async" onerror="this.style.display='none';" /><span class="pph">photo 3</span></div>
-          <span class="pcap">building</span>
-        </div>
-        <h3>I help founders reclaim their time</h3>
-        <p>I help women running founder-led businesses reclaim their time and creativity by deciding where their attention goes on purpose.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ===================== WORK ===================== -->
-<section id="work">
-  <div class="deco" style="top:28px;right:26px;transform:rotate(7deg);"><div class="washi yellow"></div></div>
-  <div class="wrap">
-    <p class="kicker">Work <span class="star">✷</span></p>
-    <h2 class="sec-h display">Systems I've built so far</h2>
-    <p style="max-width:58ch;margin-bottom:10px;color:#3a352d;">The first two run my own business. The third is the one you're reading. Click a folder to open it.</p>
-
-    <!-- ===== CASE 01: Sinem HQ ===== -->
-    <details class="casefolder" open>
-      <summary>
-        <span class="tabtop yellow">01 · Sinem HQ</span>
-        <span class="fname">A Claude operating system I run my whole business from</span>
-        <span class="fchev" aria-hidden="true">+</span>
-      </summary>
-      <div class="fbody">
-      <p class="lead">An AI coworker with structure. A router sends every request to the right part of the business, a memory layer updates itself as the system learns, and a library of skills runs on its own. Notion sits underneath as the task and to-do layer.</p>
-
-      <div class="case-grid">
-        <div class="panel">
-          <p class="panel-title">The folder system</p>
-          <div class="tree"><span class="root">Sinem HQ/</span>        the router
-├─ <span class="f">CLAUDE.md</span>     <span class="note">how to act</span>
-├─ <span class="f">MEMORY.md</span>     <span class="note">what is true</span>
-├─ 00_Resources/ <span class="note">priorities · voice</span>
-├─ Personal Assistant/
-├─ Content Studio/
-├─ Sinem in Flux/
-├─ Fractional Ops/
-├─ Freelance/
-└─ Wiki/         <span class="note">capture · distil · link · index</span>
-
-<span class="note">every room has its own CLAUDE.md + MEMORY.md</span></div>
-          <div class="pill-row">
-            <span class="pill y">1 router</span><span class="pill">6 workstations</span><span class="pill p">memory layer</span><span class="pill g">skills library</span>
-          </div>
-        </div>
-        <div class="media">
-          <div class="shot"><img src="case1.webp" alt="Sinem HQ home and workstation folders" width="1000" height="427" loading="lazy" decoding="async" /></div>
-        </div>
-      </div>
-
-      <div class="panel" style="margin-top:24px;">
-        <p class="panel-title">How it learns: every session feeds the system</p>
-        <svg viewBox="0 0 660 215" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Self-learning loop. A work session surfaces corrections, decisions and facts. They are written into CLAUDE.md and MEMORY.md. The next session starts smarter.">
+<!-- ========== 2 · THE SCALING JUNCTURE (graph only) ========== -->
+<section id="juncture">
+  <div class="wrap wrap-wide">
+    <h2 class="reveal">Founders find me at the scaling <span class="terra">juncture</span>.</h2>
+    <div class="juncture-layout">
+      <div class="forkwrap reveal">
+      <h3 class="fork-title">One starting line, two very <span class="terra">different lives</span>.</h3>
+      <figure id="efc-root">
+        <button id="efc-replay" type="button" aria-label="Replay the animation">↺ replay</button>
+        <svg viewBox="0 0 1000 640" width="100%" role="img" aria-label="Two futures from where you stand today: scaling as-is makes your hours climb exponentially, while scaling with structure keeps your hours flat as the business grows.">
           <defs>
-            <marker id="ar" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#dd7958"/></marker>
-            <marker id="arg" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5E8C4A"/></marker>
+            <clipPath id="efc-clipShared"><rect id="efc-rShared" x="140" y="0" width="0" height="640"></rect></clipPath>
+            <clipPath id="efc-clipRed"><rect id="efc-rRed" x="455" y="0" width="0" height="640"></rect></clipPath>
+            <clipPath id="efc-clipGreen"><rect id="efc-rGreen" x="455" y="0" width="0" height="640"></rect></clipPath>
           </defs>
-          <g font-family="Inter, system-ui, sans-serif">
-            <rect x="14" y="34" width="180" height="78" rx="13" fill="#FBF2A4" stroke="#1B1A17" stroke-width="2"/>
-            <text x="104" y="68" text-anchor="middle" font-size="15" font-weight="700" fill="#1B1A17">A work session</text>
-            <text x="104" y="89" text-anchor="middle" font-size="12" fill="#3a352d">you + the AI coworker</text>
+          <!-- axes -->
+          <line x1="152" y1="90" x2="152" y2="540" stroke="#1B1A17" stroke-width="2.6" stroke-linecap="round"></line>
+          <line x1="152" y1="540" x2="932" y2="540" stroke="#1B1A17" stroke-width="2.6" stroke-linecap="round"></line>
+          <!-- axis labels -->
+          <text transform="rotate(-90 60 315)" x="60" y="315" text-anchor="middle" fill="#1B1A17" font-family="Inter,sans-serif" font-size="22" font-weight="700">hours of you it eats ↑</text>
+          <text x="542" y="602" text-anchor="middle" fill="#1B1A17" font-family="Inter,sans-serif" font-size="23" font-weight="800">the business grows →</text>
+          <!-- curves (d set by script) -->
+          <path id="efc-pShared" d="" fill="none" stroke="#1B1A17" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#efc-clipShared)"></path>
+          <path id="efc-pGreen" d="" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#efc-clipGreen)"></path>
+          <path id="efc-pRed" d="" fill="none" stroke="#c25f3f" stroke-width="6" stroke-linecap="round" stroke-dasharray="0.5 21" clip-path="url(#efc-clipRed)"></path>
+          <!-- junction dot -->
+          <g id="efc-dot" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform 0.62s cubic-bezier(.18,1.5,.36,1);">
+            <circle cx="455" cy="300" r="15" fill="#fff"></circle>
+            <circle cx="455" cy="300" r="12.5" fill="#e9c46a" stroke="#c25f3f" stroke-width="4"></circle>
+          </g>
+          <!-- sparkle -->
+          <path id="efc-spark" d="M486 276 L490 290 L504 294 L490 298 L486 312 L482 298 L468 294 L482 290 Z" fill="#c25f3f" style="opacity: 0; transform-box: fill-box; transform-origin: center;"></path>
+          <!-- annotations -->
+          <text id="efc-here" x="440" y="278" text-anchor="end" fill="#c25f3f" font-family="Fraunces, serif" font-style="italic" font-weight="600" font-size="25" style="opacity: 0; transform: translateY(8px); transition: opacity .55s ease, transform .55s ease;">you are here</text>
+          <text id="efc-redT" x="760" y="176" text-anchor="middle" fill="#c25f3f" font-family="Inter,sans-serif" font-weight="800" font-size="23" style="opacity: 0; transform: translateY(8px); transition: opacity .55s ease, transform .55s ease;">scale as-is: growth eats you</text>
+          <text id="efc-redS" x="760" y="201" text-anchor="middle" fill="#8C7A6C" font-family="Inter,sans-serif" font-weight="400" font-size="16.5" style="opacity: 0; transform: translateY(8px); transition: opacity .55s ease .08s, transform .55s ease .08s;">more revenue, more of your evenings, less of the joy</text>
+          <text id="efc-greenT" x="772" y="424" text-anchor="middle" fill="#5E7E54" font-family="Inter,sans-serif" font-weight="800" font-size="23" style="opacity: 0; transform: translateY(8px); transition: opacity .55s ease, transform .55s ease;">scale with structure</text>
+          <text id="efc-greenS" x="772" y="449" text-anchor="middle" fill="#8C7A6C" font-family="Inter,sans-serif" font-weight="400" font-size="16.5" style="opacity: 0; transform: translateY(8px); transition: opacity .55s ease .08s, transform .55s ease .08s;">the business climbs, your hours don't</text>
+        </svg>
+      </figure>
+      </div>
 
-            <rect x="240" y="34" width="180" height="78" rx="13" fill="#F4C4D4" stroke="#1B1A17" stroke-width="2"/>
-            <text x="330" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#1B1A17">What surfaces</text>
-            <text x="330" y="87" text-anchor="middle" font-size="11.5" fill="#3a352d">corrections · decisions · facts</text>
+      <!-- CHECKLIST -->
+      <div class="ck reveal">
+        <svg class="ck-star" style="top:120px;right:34px;" width="28" height="28" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 4 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z" fill="var(--terra)"></path></svg>
+        <svg class="ck-star" style="bottom:128px;right:118px;" width="17" height="17" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 4 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z" fill="var(--yellow)"></path></svg>
+        <svg class="ck-star" style="bottom:26px;right:44px;" width="16" height="16" viewBox="0 0 52 52" aria-hidden="true"><path d="M26 4 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6 z" fill="var(--green)"></path></svg>
+        <div class="ck-head">
+          <div>
+            <h3 class="ck-title">That <span class="terra">founder</span> is <span class="grn">you</span>, if:</h3>
+          </div>
+          <button class="ck-reset" type="button" aria-label="Reset the checklist">reset</button>
+        </div>
+        <div class="ck-list">
+          <div class="ck-row" data-i="1"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You're one "quick question" away from losing the whole morning.</span></div>
+          <div class="ck-row" data-i="2"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You start the day already playing catch-up.</span></div>
+          <div class="ck-row" data-i="3"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You had to decide 1,000 things before your lunch break, and now you're tired.</span></div>
+          <div class="ck-row" data-i="5"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">The good ideas are still in your phone, waiting.</span></div>
+          <div class="ck-row" data-i="7"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You'd never quit, but a two-week disappearance without the business breaking sounds nice.</span></div>
+        </div>
+        <div class="ck-count" id="ck-count" aria-live="polite">Tick the ones that landed.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <rect x="466" y="34" width="180" height="78" rx="13" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
-            <text x="556" y="66" text-anchor="middle" font-size="15" font-weight="700" fill="#1B1A17">Written down</text>
-            <text x="556" y="87" text-anchor="middle" font-size="11.5" fill="#c25f3f" font-weight="700">CLAUDE.md · MEMORY.md</text>
+<!-- ========== STATEMENT BAND ========== -->
+<section class="statement-band">
+  <div class="wrap">
+    <p class="statement reveal">Founders hire me to give them back <span class="ink">the freedom they built the business for</span>.</p>
+  </div>
+</section>
 
-            <line x1="194" y1="73" x2="238" y2="73" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar)"/>
-            <line x1="420" y1="73" x2="464" y2="73" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar)"/>
+<!-- ========== 3 · HOW (the three portfolio diagrams) ========== -->
+<section id="how">
+  <div class="wrap">
+    <span class="kicker reveal">How I actually do it ✷</span>
+    <h2 class="reveal">Your business is a loop. It leaks in six places. <span class="terra">We stop the leaks.</span></h2>
 
-            <path d="M556,112 C556,200 104,200 104,114" fill="none" stroke="#5E8C4A" stroke-width="2.5" marker-end="url(#arg)"/>
-            <text x="330" y="158" text-anchor="middle" font-size="13.5" font-weight="700" fill="#5E8C4A">every next session starts smarter</text>
+    <div class="how-hero">
+      <!-- LOOP -->
+      <div class="loopwrap reveal">
+        <svg viewBox="0 0 1000 1000" role="img" aria-label="Your business is a loop of six stages: Attract, Capture, Trust, Sell, Deliver, Keep. Hover a stage to see the founder complaint it hides.">
+          <circle id="lp-ring" cx="500" cy="500" r="280" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-dasharray="1759.29" stroke-dashoffset="1759.29"></circle>
+          <path id="lp-cv0" d="M-9 -11 L9 0 L-9 11" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(640,257.5) rotate(30)" style="opacity:0; transition: opacity .4s ease;"></path>
+          <path id="lp-cv1" d="M-9 -11 L9 0 L-9 11" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(780,500) rotate(90)" style="opacity:0; transition: opacity .4s ease;"></path>
+          <path id="lp-cv2" d="M-9 -11 L9 0 L-9 11" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(640,742.5) rotate(150)" style="opacity:0; transition: opacity .4s ease;"></path>
+          <path id="lp-cv3" d="M-9 -11 L9 0 L-9 11" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(360,742.5) rotate(210)" style="opacity:0; transition: opacity .4s ease;"></path>
+          <path id="lp-cv4" d="M-9 -11 L9 0 L-9 11" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(220,500) rotate(270)" style="opacity:0; transition: opacity .4s ease;"></path>
+          <path id="lp-cv5" d="M-9 -11 L9 0 L-9 11" fill="none" stroke="#6a8f6b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(360,257.5) rotate(330)" style="opacity:0; transition: opacity .4s ease;"></path>
+          <path id="lp-spark" d="M500 458 L510 486 L538 496 L510 506 L500 534 L490 506 L462 496 L490 486 Z" fill="#6a8f6b" style="transform-box: fill-box; transform-origin: center;"></path>
+          <text id="lp-cap" x="500" y="576" text-anchor="middle" fill="#c25f3f" font-family="Fraunces, serif" font-style="italic" font-weight="600" font-size="32" style="opacity:0; transition: opacity .6s ease;">the shape of your business</text>
+          <g transform="rotate(-2.5 500 220)"><g id="lp-n0" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.18,1.5,.36,1);"><rect x="418" y="186" width="164" height="68" rx="16" fill="#211C16" opacity="0.12" transform="translate(5,6)"></rect><rect x="418" y="186" width="164" height="68" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.5"></rect><text x="500" y="229" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#1B1A17">Attract</text></g></g>
+          <g transform="rotate(2.5 742.5 360)"><g id="lp-n1" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.18,1.5,.36,1);"><rect x="660.5" y="326" width="164" height="68" rx="16" fill="#211C16" opacity="0.12" transform="translate(5,6)"></rect><rect x="660.5" y="326" width="164" height="68" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.5"></rect><text x="742.5" y="369" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#1B1A17">Capture</text></g></g>
+          <g transform="rotate(-2 742.5 640)"><g id="lp-n2" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.18,1.5,.36,1);"><rect x="660.5" y="606" width="164" height="68" rx="16" fill="#211C16" opacity="0.12" transform="translate(5,6)"></rect><rect x="660.5" y="606" width="164" height="68" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.5"></rect><text x="742.5" y="649" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#1B1A17">Trust</text></g></g>
+          <g transform="rotate(2.5 500 780)"><g id="lp-n3" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.18,1.5,.36,1);"><rect x="418" y="746" width="164" height="68" rx="16" fill="#211C16" opacity="0.12" transform="translate(5,6)"></rect><rect x="418" y="746" width="164" height="68" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.5"></rect><text x="500" y="789" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#1B1A17">Sell</text></g></g>
+          <g transform="rotate(-2.5 257.5 640)"><g id="lp-n4" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.18,1.5,.36,1);"><rect x="175.5" y="606" width="164" height="68" rx="16" fill="#211C16" opacity="0.12" transform="translate(5,6)"></rect><rect x="175.5" y="606" width="164" height="68" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.5"></rect><text x="257.5" y="649" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#1B1A17">Deliver</text></g></g>
+          <g transform="rotate(2 257.5 360)"><g id="lp-n5" style="transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.18,1.5,.36,1);"><rect x="175.5" y="326" width="164" height="68" rx="16" fill="#211C16" opacity="0.12" transform="translate(5,6)"></rect><rect x="175.5" y="326" width="164" height="68" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.5"></rect><text x="257.5" y="369" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="#1B1A17">Keep</text></g></g>
+          <g id="lp-sub">
+            <text id="lp-s1-0" x="500" y="279" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="400" fill="#6B6154" style="transition:opacity .25s ease;">content engine + calendar</text>
+            <text id="lp-s1-1" x="742.5" y="419" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="400" fill="#6B6154" style="transition:opacity .25s ease;">magnets, quizzes, tags</text>
+            <text id="lp-s1-2" x="742.5" y="699" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="400" fill="#6B6154" style="transition:opacity .25s ease;">welcome flows + email ops</text>
+            <text id="lp-s1-3" x="500" y="839" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="400" fill="#6B6154" style="transition:opacity .25s ease;">launch machinery + checkout</text>
+            <text id="lp-s1-4" x="257.5" y="699" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="400" fill="#6B6154" style="transition:opacity .25s ease;">onboarding + support systems</text>
+            <text id="lp-s1-5" x="257.5" y="419" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="400" fill="#6B6154" style="transition:opacity .25s ease;">recovery, renewals, referrals</text>
+          </g>
+          <g id="lp-clouds">
+            <g id="lp-c0" style="opacity:0; transition:opacity .22s ease; pointer-events:none;"><circle cx="500" cy="180" r="4.5" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><circle cx="500" cy="168" r="7" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><path id="lp-cb0" d="" fill="#fff" stroke="#1B1A17" stroke-width="2.5" transform="translate(500,110)"></path><text x="500" y="106" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-style="italic" fill="#4A443B"><tspan x="500" dy="0">"I post when I feel guilty</tspan><tspan x="500" dy="18">about not posting"</tspan></text></g>
+            <g id="lp-c1" style="opacity:0; transition:opacity .22s ease; pointer-events:none;"><circle cx="742.5" cy="318" r="4.5" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><circle cx="742.5" cy="308" r="7" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><path id="lp-cb1" d="" fill="#fff" stroke="#1B1A17" stroke-width="2.5" transform="translate(742.5,250)"></path><text x="742.5" y="246" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-style="italic" fill="#4A443B"><tspan x="742.5" dy="0">"300k followers and I can't</tspan><tspan x="742.5" dy="18">email any of them"</tspan></text></g>
+            <g id="lp-c2" style="opacity:0; transition:opacity .22s ease; pointer-events:none;"><circle cx="742.5" cy="682" r="4.5" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><circle cx="742.5" cy="692" r="7" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><path id="lp-cb2" d="" fill="#fff" stroke="#1B1A17" stroke-width="2.5" transform="translate(742.5,752)"></path><text x="742.5" y="748" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-style="italic" fill="#4A443B"><tspan x="742.5" dy="0">"I haven't sent a newsletter</tspan><tspan x="742.5" dy="18">since March"</tspan></text></g>
+            <g id="lp-c3" style="opacity:0; transition:opacity .22s ease; pointer-events:none;"><circle cx="500" cy="822" r="4.5" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><circle cx="500" cy="832" r="7" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><path id="lp-cb3" d="" fill="#fff" stroke="#1B1A17" stroke-width="2.5" transform="translate(500,898)"></path><text x="500" y="886" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-style="italic" fill="#4A443B"><tspan x="500" dy="0">"People say they want it,</tspan><tspan x="500" dy="17">then I never hear</tspan><tspan x="500" dy="17">from them again"</tspan></text></g>
+            <g id="lp-c4" style="opacity:0; transition:opacity .22s ease; pointer-events:none;"><circle cx="257.5" cy="682" r="4.5" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><circle cx="257.5" cy="692" r="7" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><path id="lp-cb4" d="" fill="#fff" stroke="#1B1A17" stroke-width="2.5" transform="translate(257.5,756)"></path><text x="257.5" y="744" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-style="italic" fill="#4A443B"><tspan x="257.5" dy="0">"Every client gets onboarded</tspan><tspan x="257.5" dy="16">slightly differently,</tspan><tspan x="257.5" dy="16">from memory"</tspan></text></g>
+            <g id="lp-c5" style="opacity:0; transition:opacity .22s ease; pointer-events:none;"><circle cx="257.5" cy="318" r="4.5" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><circle cx="257.5" cy="308" r="7" fill="#fff" stroke="#1B1A17" stroke-width="2"></circle><path id="lp-cb5" d="" fill="#fff" stroke="#1B1A17" stroke-width="2.5" transform="translate(257.5,250)"></path><text x="257.5" y="246" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-style="italic" fill="#4A443B"><tspan x="257.5" dy="0">"People cancel and I</tspan><tspan x="257.5" dy="18">have no idea why"</tspan></text></g>
+          </g>
+          <g id="lp-orbit" transform="translate(500,220)" style="opacity:0; transition: opacity .4s ease;">
+            <circle r="15" fill="#FAF7F1"></circle>
+            <circle id="lp-orbitI" r="11" fill="#6a8f6b"></circle>
           </g>
         </svg>
-        <p class="cap">Nothing important lives only in my head. The system writes it down, so it compounds.</p>
       </div>
+      <!-- QUOTE -->
+      <div class="loopquote reveal">
+        <span class="lq-mark" aria-hidden="true">&ldquo;</span>
+        <p id="loopquote-text">We map your business loop, uncover the ops leaks and redesign it. You get your <span class="lq-hl">ease, creativity and freedom</span> back.</p>
+        <a class="btn lq-btn" href="how.html">Learn more &rarr;</a>
       </div>
-    </details>
+    </div>
+  </div>
+</section>
 
-    <!-- ===== CASE 02: AI Second Brain ===== -->
-    <details class="casefolder">
-      <summary>
-        <span class="tabtop pink">02 · AI Second Brain</span>
-        <span class="fname">Saved links become structured knowledge</span>
-        <span class="fchev" aria-hidden="true">+</span>
-      </summary>
-      <div class="fbody">
-      <p class="lead">I save things on my phone all day. This pipeline catches them, transcribes them, files each one under the right topic, and distils it into notes I can actually use later. Built on Andrej Karpathy's capture, distil, link, index.</p>
+<!-- ========== STATEMENT BAND · ONLY-YOU-CAN-DO ========== -->
+<section class="statement-band dark">
+  <div class="wrap">
+    <p class="statement reveal">I take over the work someone can do, so you do <span class="terra">the work only you can do</span>.</p>
+  </div>
+</section>
 
-      <div class="panel" style="margin-top:22px;">
-        <p class="panel-title">The capture pipeline</p>
-        <svg viewBox="0 0 660 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capture pipeline. Save a link on your phone, it arrives in a Slack channel, Apify scrapes and transcribes it, then it auto-routes to the right topic.">
-          <defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#dd7958"/></marker></defs>
-          <g font-family="Inter, system-ui, sans-serif">
-            <rect x="8" y="38" width="150" height="74" rx="12" fill="#FBF2A4" stroke="#1B1A17" stroke-width="2"/>
-            <text x="83" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Save a link</text>
-            <text x="83" y="90" text-anchor="middle" font-size="11.5" fill="#3a352d">from my phone</text>
+<!-- ========== 4 · OFFERS (Claude Design big-number editorial) ========== -->
+<section id="offers">
+  <div class="wrap">
+    <span class="kicker reveal">The offers ✷</span>
+    <h2 class="reveal">Ways to work with <span class="terra">me</span>:</h2>
+    <div class="o3-list" id="offers-list"></div>
+  </div>
+</section>
 
-            <rect x="186" y="38" width="158" height="74" rx="12" fill="#F4C4D4" stroke="#1B1A17" stroke-width="2"/>
-            <text x="265" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Slack capture</text>
-            <text x="265" y="89" text-anchor="middle" font-size="10" fill="#3a352d">#instagram · #youtube · #articles</text>
-
-            <rect x="372" y="38" width="120" height="74" rx="12" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
-            <text x="432" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Apify</text>
-            <text x="432" y="90" text-anchor="middle" font-size="10.5" fill="#3a352d">scrape + transcribe</text>
-
-            <rect x="520" y="38" width="132" height="74" rx="12" fill="#cfe3c3" stroke="#1B1A17" stroke-width="2"/>
-            <text x="586" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#1B1A17">Auto-route</text>
-            <text x="586" y="90" text-anchor="middle" font-size="11.5" fill="#3a352d">by topic</text>
-
-            <line x1="158" y1="75" x2="184" y2="75" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar2)"/>
-            <line x1="344" y1="75" x2="370" y2="75" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar2)"/>
-            <line x1="492" y1="75" x2="518" y2="75" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar2)"/>
-          </g>
-        </svg>
-        <div class="pill-row" style="justify-content:center;">
-          <span class="pill">capture</span><span class="chip-arrow">→</span>
-          <span class="pill">distil</span><span class="chip-arrow">→</span>
-          <span class="pill">link</span><span class="chip-arrow">→</span>
-          <span class="pill">index</span>
-        </div>
+<!-- ========== 5 · FOUNDER TAX (calculator, from the bottleneck quiz) ========== -->
+<section id="tax">
+  <div class="wrap">
+    <span class="kicker reveal">The math ✷</span>
+    <h2 class="reveal">Your founder <span class="terra">tax</span></h2>
+    <p class="lead reveal">The hours you spend on the backend are not free. Put in two honest numbers and see what you pay yourself every month to keep doing the work somebody else could.</p>
+    <div class="taxcard reveal">
+      <div class="taxinputs">
+        <label>Backend hours a week<span class="taxsub">admin, DMs, onboarding, chasing invoices, moving files</span>
+          <input type="number" id="taxHours" min="0" max="80" value="10" inputmode="numeric"></label>
+        <label>What an hour of your time is worth<span class="taxsub">your rate, or what you'd charge someone for an hour</span>
+          <input type="number" id="taxRate" min="0" max="2000" value="200" inputmode="numeric"></label>
       </div>
+      <div class="taxresult">
+        <span class="taxlabel">You pay yourself</span>
+        <div class="taxbig" id="taxBig">~$8,600<span class="taxper"> /month</span></div>
+        <p class="taxexpl" id="taxExpl">10 backend hours a week at $200 an hour. Hours × rate × 4.3 weeks, rough on purpose, and usually bigger than you'd guess.</p>
+      </div>
+    </div>
+    <div class="ctarow reveal">
+      <a class="btn" href="bottleneck-finder.html">Take the full bottleneck quiz →</a>
+      <span class="taxnote">Fifteen questions, about four minutes, a full report at the end.</span>
+    </div>
+  </div>
+</section>
 
-      <div class="case-grid media-left" style="margin-top:24px;">
-        <div class="media">
-          <div class="shot"><img src="case2.webp" alt="A captured clip filed under its topic" width="1000" height="460" loading="lazy" decoding="async" /></div>
-        </div>
-        <div>
-          <p style="font-size:16px;color:#3a352d;margin-bottom:12px;">Three phone-to-Slack inboxes feed it, one per source:</p>
-          <div class="pill-row">
-            <span class="pill p">#instagram-capture</span>
-            <span class="pill p">#youtube-capture</span>
-            <span class="pill p">#articles-capture</span>
+<!-- ========== 6 · PROOF (folder tabs + real screenshots) ========== -->
+<section id="proof">
+  <div class="wrap">
+    <span class="kicker reveal">What I've built so far ✷</span>
+    <h2 class="reveal">The systems, with the <span class="terra">receipts</span></h2>
+    <p class="lead reveal">The first two run my own business every day. The third is the site you're reading. Click a tab.</p>
+    <div class="foldertabs reveal">
+      <div class="ftabs" role="tablist">
+        <button class="ftab active" data-tab="0" type="button">01 · Sinem HQ</button>
+        <button class="ftab" data-tab="1" type="button">02 · AI Second Brain</button>
+        <button class="ftab" data-tab="2" type="button">03 · This website</button>
+      </div>
+      <div class="fpanel">
+        <div class="fcase active" data-case="0">
+          <h3>A Claude operating system I run my whole business from</h3>
+          <p>A router sends every request to the right part of the business, a memory layer updates itself as the system learns, and a library of skills runs on its own. Notion sits underneath as the task layer.</p>
+          <span class="fcase-cap">how it's built</span>
+          <div class="fcase-visual">
+            <svg viewBox="0 0 1000 350" role="img" aria-label="Sinem HQ architecture: a request goes to the router, which sends it to a workstation; a memory layer learns as it goes and skills run on their own; Notion is the task layer underneath.">
+              <rect x="410" y="6" width="180" height="32" rx="16" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2"></rect>
+              <text x="500" y="27" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="#1B1A17">a request comes in</text>
+              <line x1="500" y1="38" x2="500" y2="54" stroke="#1B1A17" stroke-width="2"></line>
+              <rect x="326" y="54" width="348" height="60" rx="14" fill="#FCEDE6" stroke="#c25f3f" stroke-width="2.5"></rect>
+              <text x="500" y="80" text-anchor="middle" font-family="Anton,sans-serif" font-size="20" fill="#c25f3f" letter-spacing=".02em">ROUTER</text>
+              <text x="500" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">sends each request to the right room</text>
+              <rect x="40" y="62" width="205" height="46" rx="11" fill="#F5E4A8" stroke="#1B1A17" stroke-width="2"></rect>
+              <text x="142" y="84" text-anchor="middle" font-family="Anton,sans-serif" font-size="14" fill="#1B1A17">MEMORY</text>
+              <text x="142" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#4c4a45">learns as it goes</text>
+              <path d="M245 85 L326 84" stroke="#c25f3f" stroke-width="2" stroke-dasharray="2 6" fill="none"></path>
+              <rect x="755" y="62" width="205" height="46" rx="11" fill="#DCE6D4" stroke="#1B1A17" stroke-width="2"></rect>
+              <text x="857" y="84" text-anchor="middle" font-family="Anton,sans-serif" font-size="14" fill="#1B1A17">SKILLS</text>
+              <text x="857" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#4c4a45">run on their own</text>
+              <path d="M755 85 L674 84" stroke="#c25f3f" stroke-width="2" stroke-dasharray="2 6" fill="none"></path>
+              <line x1="500" y1="114" x2="500" y2="146" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="250" y1="146" x2="750" y2="146" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="250" y1="146" x2="250" y2="172" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="417" y1="146" x2="417" y2="172" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="583" y1="146" x2="583" y2="172" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="750" y1="146" x2="750" y2="172" stroke="#1B1A17" stroke-width="2"></line>
+              <g text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="700" fill="#1B1A17">
+                <rect x="170" y="172" width="160" height="54" rx="12" fill="#FAD5E5" stroke="#1B1A17" stroke-width="2"></rect><text x="250" y="204">Personal Assistant</text>
+                <rect x="337" y="172" width="160" height="54" rx="12" fill="#F5E4A8" stroke="#1B1A17" stroke-width="2"></rect><text x="417" y="204">Content Studio</text>
+                <rect x="503" y="172" width="160" height="54" rx="12" fill="#DCE6D4" stroke="#1B1A17" stroke-width="2"></rect><text x="583" y="204">Fractional Ops</text>
+                <rect x="670" y="172" width="160" height="54" rx="12" fill="#F6D8CC" stroke="#1B1A17" stroke-width="2"></rect><text x="750" y="204">Wiki</text>
+              </g>
+              <line x1="250" y1="226" x2="250" y2="270" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="417" y1="226" x2="417" y2="270" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="583" y1="226" x2="583" y2="270" stroke="#1B1A17" stroke-width="2"></line>
+              <line x1="750" y1="226" x2="750" y2="270" stroke="#1B1A17" stroke-width="2"></line>
+              <rect x="90" y="270" width="820" height="54" rx="12" fill="#1B1A17"></rect>
+              <text x="500" y="294" text-anchor="middle" font-family="Anton,sans-serif" font-size="17" fill="#F4EFE4">NOTION</text>
+              <text x="500" y="312" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" fill="#cfc7b6">the task and ops layer everything writes to</text>
+            </svg>
           </div>
-          <p style="font-size:15px;color:#3a352d;margin-top:16px;">Each clip files itself under the right topic, gets distilled into a source note, and links to what I already know. No manual filing.</p>
+          <span class="fcase-cap">and here it is running</span>
+          <img class="fcase-shot" src="case1.webp" alt="Sinem HQ operating system in VS Code" onerror="this.style.opacity=.35;">
         </div>
-      </div>
-      </div>
-    </details>
-
-    <!-- ===== CASE 03: This website ===== -->
-    <details class="casefolder">
-      <summary>
-        <span class="tabtop green">03 · This website</span>
-        <span class="fname">Vibe-coded from a blank file, by me and Claude</span>
-        <span class="fchev" aria-hidden="true">+</span>
-      </summary>
-      <div class="fbody">
-      <p class="lead">Designed and built from scratch in Cowork. A token-based design system, reusable structure, accessibility baked in, then a clean path to production. The thing you are reading is the case study.</p>
-
-      <div class="case-grid center">
-        <div class="panel">
-          <p class="panel-title">From blank file to live</p>
-          <svg viewBox="0 0 660 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Build pipeline. Blank file, into Cowork with a skill and design spec, to index dot html, to GitHub, to Vercel live.">
-            <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#dd7958"/></marker></defs>
-            <g font-family="Inter, system-ui, sans-serif">
-              <rect x="11" y="30" width="110" height="52" rx="11" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
-              <text x="66" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">Blank file</text>
-
-              <rect x="143" y="30" width="110" height="52" rx="11" fill="#FBF2A4" stroke="#1B1A17" stroke-width="2"/>
-              <text x="198" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">Cowork</text>
-              <text x="198" y="71" text-anchor="middle" font-size="9.5" fill="#3a352d">skill + spec</text>
-
-              <rect x="275" y="30" width="110" height="52" rx="11" fill="#FBF8F2" stroke="#1B1A17" stroke-width="2"/>
-              <text x="330" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">index.html</text>
-
-              <rect x="407" y="30" width="110" height="52" rx="11" fill="#F4C4D4" stroke="#1B1A17" stroke-width="2"/>
-              <text x="462" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">GitHub</text>
-
-              <rect x="539" y="30" width="110" height="52" rx="11" fill="#cfe3c3" stroke="#1B1A17" stroke-width="2"/>
-              <text x="594" y="54" text-anchor="middle" font-size="13" font-weight="700" fill="#1B1A17">Vercel</text>
-              <text x="594" y="71" text-anchor="middle" font-size="9.5" fill="#3a352d">live</text>
-
-              <line x1="121" y1="56" x2="141" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
-              <line x1="253" y1="56" x2="273" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
-              <line x1="385" y1="56" x2="405" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
-              <line x1="517" y1="56" x2="537" y2="56" stroke="#dd7958" stroke-width="2.5" marker-end="url(#ar3)"/>
-            </g>
-          </svg>
-          <div class="swatches">
-            <span class="sw"><i style="background:#F4EFE4;"></i>Paper</span>
-            <span class="sw"><i style="background:#1B1A17;"></i>Ink</span>
-            <span class="sw"><i style="background:#dd7958;"></i>Terracotta</span>
-            <span class="sw"><i style="background:#5E8C4A;"></i>Green</span>
-            <span class="sw"><i style="background:#FBF2A4;"></i>Sticky</span>
-            <span class="sw"><i style="background:#F4C4D4;"></i>Washi</span>
+        <div class="fcase" data-case="1">
+          <h3>Saved links become structured knowledge</h3>
+          <p>A pipeline that catches everything I save on my phone, transcribes it, files it under the right topic, and distils it into notes I actually use.</p>
+          <span class="fcase-cap">how it's built</span>
+          <div class="fcase-visual">
+            <svg viewBox="0 0 1000 200" role="img" aria-label="AI Second Brain pipeline: capture on your phone, transcribe to text, file by topic, distil into notes.">
+              <g text-anchor="middle">
+                <rect x="12" y="40" width="212" height="120" rx="14" fill="#FAD5E5" stroke="#1B1A17" stroke-width="2.5"></rect>
+                <text x="118" y="88" font-family="Anton,sans-serif" font-size="20" fill="#1B1A17">CAPTURE</text>
+                <text x="118" y="114" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">links, reels, voice</text>
+                <text x="118" y="130" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">notes on your phone</text>
+                <path d="M232 100 L256 100 M248 92 L256 100 L248 108" stroke="#c25f3f" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect x="264" y="40" width="212" height="120" rx="14" fill="#F5E4A8" stroke="#1B1A17" stroke-width="2.5"></rect>
+                <text x="370" y="94" font-family="Anton,sans-serif" font-size="20" fill="#1B1A17">TRANSCRIBE</text>
+                <text x="370" y="122" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">audio and video to text</text>
+                <path d="M484 100 L508 100 M500 92 L508 100 L500 108" stroke="#c25f3f" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect x="516" y="40" width="212" height="120" rx="14" fill="#DCE6D4" stroke="#1B1A17" stroke-width="2.5"></rect>
+                <text x="622" y="94" font-family="Anton,sans-serif" font-size="19" fill="#1B1A17">FILE BY TOPIC</text>
+                <text x="622" y="122" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">routed to the right place</text>
+                <path d="M736 100 L760 100 M752 92 L760 100 L752 108" stroke="#c25f3f" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+                <rect x="768" y="40" width="212" height="120" rx="14" fill="#FCEDE6" stroke="#c25f3f" stroke-width="2.5"></rect>
+                <text x="874" y="88" font-family="Anton,sans-serif" font-size="20" fill="#c25f3f">DISTIL</text>
+                <text x="874" y="114" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">into notes you</text>
+                <text x="874" y="130" font-family="Inter,sans-serif" font-size="12" fill="#4c4a45">actually use</text>
+              </g>
+            </svg>
           </div>
+          <span class="fcase-cap">and here it is running</span>
+          <img class="fcase-shot" src="case2.webp" alt="Slack capture channels feeding the Second Brain" onerror="this.style.opacity=.35;">
         </div>
-        <div class="media">
-          <div class="shot"><img src="case3.webp" alt="This website in the Cowork editor" width="1000" height="574" loading="lazy" decoding="async" /></div>
+        <div class="fcase" data-case="2">
+          <h3>Vibe-coded from a blank file, by me and Claude</h3>
+          <p>A token-based design system, reusable structure, accessibility baked in, then a clean path to production. The thing you're reading is the case study.</p>
+          <img class="fcase-shot" src="case3.webp" alt="The FluxFounderOps website design" onerror="this.style.opacity=.35;">
         </div>
       </div>
-      </div>
-    </details>
-
-    <!-- SECONDARY OFFER: $49 self-serve product -->
-    <div class="product">
-      <p class="eyebrow">Do it yourself · $49</p>
-      <h3 class="display" style="font-size:26px;margin:6px 0;">Build your Claude OS <span class="price">$49</span></h3>
-      <p>Not ready to bring someone in yet? Start here. This is the Claude setup behind my own operation: the structure, the memory, the workstations, the prompts. I packaged it as a template and walked through the build on video, so you can stand up your own version.</p>
-      <ul>
-        <li>The Claude OS template: a router, a memory layer, and a workstation per part of your business.</li>
-        <li>A step-by-step video walkthrough where I set it up from a blank file.</li>
-        <li>A starter prompt pack and a setup checklist.</li>
-      </ul>
-      <p style="font-size:14px;"><b>Delivered instantly.</b> The second you pay, you get an email with the template and the walkthrough link. Yours to keep.</p>
-      <!-- Buy button stays inactive until Stripe activates the account, then swap href for the Stripe payment link and remove aria-disabled + caption -->
-      <a class="btn btn-primary" href="#" aria-disabled="true" style="margin-top:14px;">Buy · $49</a>
-      <p class="ctacap">Checkout opens at launch.</p>
-      <p class="smallprint">Digital product, delivered instantly. By buying it you agree to immediate access and waive the 14-day cancellation right, so all sales are final. Full terms in the <a href="refund.html" style="text-decoration:underline;">Refund Policy</a>.</p>
     </div>
   </div>
 </section>
 
-<!-- ===================== WHO I WORK WITH ===================== -->
-<section id="who">
+<!-- ========== 7 · STORY (business-arc timeline) ========== -->
+<section id="story">
   <div class="wrap">
-    <div class="postit">
-      <span class="tape"></span>
-      <span class="burst-deco" style="top:-18px;right:26px;transform:rotate(-8deg);">✷</span>
-      <span class="burst-deco" style="bottom:28px;left:-12px;font-size:26px;">✷</span>
-
-      <p class="who-kicker">Who I work with ✷</p>
-
-      <p class="who-line">You run a <span class="hl-w">founder-led business</span>, a <span class="hl-p">coach</span>, <span class="hl-g">digital business owner</span>, or <span class="hl-w">creator</span>.</p>
-
-      <p class="who-line">You built it, you know it inside out, and now most of it <b>depends on you being available</b>.</p>
-
-      <p class="who-line"><b>I build the backend</b> so your business can run while you <span class="hl-w">think</span>, <span class="hl-p">create</span>, and <span class="hl-g">lead</span>.</p>
+    <span class="kicker reveal">About me ✷</span>
+    <h2 class="reveal">Who I am, and how I got <span class="terra">here</span></h2>
+    <div class="story-eras">
+      <div class="era2 reveal">
+        <div class="era2-txt"><span class="era2-num">01</span><span class="era2-when">Supply chain · on the line</span><h3>I built systems that moved $20M</h3><p>7+ years running complex operations: products onto shelves on time at P&amp;G and Amazon, food aid into crisis zones across MENA with the UN. Over $20M saved by digitising and optimising how the work flowed.</p></div>
+        <div class="era2-photo"><img src="timeline-1.webp" alt="Operations work in supply chain" onerror="this.style.display='none';"></div>
+      </div>
+      <div class="era2 reveal">
+        <div class="era2-txt"><span class="era2-num">02</span><span class="era2-when">The career break · stepping back</span><h3>I stepped back on purpose</h3><p>I built a Substack on career transitions that grew to nearly a thousand readers. I learned how to build an audience, a body of work, and a point of view.</p></div>
+        <div class="era2-photo"><img src="timeline-2.webp" alt="Writing and stepping back" onerror="this.style.display='none';"></div>
+      </div>
+      <div class="era2 reveal">
+        <div class="era2-txt"><span class="era2-num">03</span><span class="era2-when">Now · building</span><h3>I help founders reclaim their time</h3><p>I help women running founder-led businesses reclaim their time and creativity by deciding where their attention goes on purpose.</p></div>
+        <div class="era2-photo"><img src="timeline-3.webp" alt="Building the business now" onerror="this.style.display='none';"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== TOOLS ===================== -->
-<section id="tools">
+<!-- ========== 8 · FUN FACTS ========== -->
+<section id="funfacts">
   <div class="wrap">
-    <div class="sticky">
-      <p class="kicker">My toolkit, in progress</p>
-      <p style="font-size:16px;margin-top:6px;">Actively learning. I am deep in the backend tools that make this work right now:</p>
-      <div class="tags">
-        <span class="tag">Make</span><span class="tag">Kit</span><span class="tag">ManyChat</span>
-        <span class="tag">Notion</span><span class="tag">Claude</span><span class="tag">+ whatever a build needs next</span>
+    <span class="kicker reveal">Off the clock ✷</span>
+    <h2 class="reveal">A few things that aren't on my <span class="terra">CV</span></h2>
+    <div class="funrow2">
+      <div class="funcards2">
+        <div class="funcard2 reveal"><div class="fh2">Born in Cappadocia</div><p>Nevşehir, Turkey, the valley famous for its hot-air balloons.</p></div>
+        <div class="funcard2 reveal"><div class="fh2">3 continents, 5 countries, 7 years</div><p>Istanbul, Luxembourg, Cairo, then a long slow lap of Southeast Asia.</p></div>
+        <div class="funcard2 reveal"><div class="fh2">Trained coach, brand-new runner</div><p>Certified through Martha Beck's Wayfinder program. Lacing up for my first real runs in 2026.</p></div>
       </div>
+      <div class="polaroid2 reveal"><img src="funfact.webp" alt="Skydiving over the Giza pyramids" onerror="this.style.opacity=.35;"><div class="cap2">skydiving over Giza ✷</div></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FUN FACTS ===================== -->
-<section id="facts">
-  <div class="deco" style="top:24px;right:26px;transform:rotate(6deg);"><div class="washi pink"></div></div>
+<!-- ========== CLOSING CTA ========== -->
+<section class="endcta">
   <div class="wrap">
-    <p class="kicker">Off the clock <span class="star">✷</span></p>
-    <h2 class="sec-h display">A few fun facts</h2>
-    <div class="facts-wrap">
-      <div class="photo-frame">
-        <img src="funfact.webp" alt="Skydiving over the Giza pyramids" width="860" height="489" loading="lazy" decoding="async" />
-        <span class="pcap">over the Giza pyramids ✷</span>
-      </div>
-      <div class="facts">
-        <div class="fact y"><span class="fb">✷</span>Born in Nevşehir, Turkey, the city famous for its hot-air balloons.</div>
-        <div class="fact p"><span class="fb">✷</span>Lived on 3 continents and in 5 countries in the last 7 years.</div>
-        <div class="fact g"><span class="fb">✷</span>Skydived twice, once over the Giza pyramids.</div>
-        <div class="fact c"><span class="fb">✷</span>Trained life coach through Martha Beck's Wayfinder program.</div>
-        <div class="fact w"><span class="fb">✷</span>This year, I'm becoming a runner.</div>
-      </div>
-    </div>
+    <span class="kicker reveal">Ready when you are</span>
+    <h2 class="reveal">Ready to reclaim your time and <span class="terra">creativity</span>?</h2>
+    <p class="lead reveal">Let's find your bottleneck and build the system that removes it.</p>
+    <div class="endbtnrow reveal"><a class="btn" href="https://calendly.com/sineminflux/30min">Book a call &rarr;</a></div>
   </div>
 </section>
 
-<!-- ===================== CLOSING CTA ===================== -->
-<section id="book">
-  <div class="wrap closing">
-    <p class="kicker">Ready when you are</p>
-    <h2 class="display">Ready to reclaim your time and creativity?</h2>
-    <p>Let's find your bottleneck and build the system that removes it.</p>
-    <a class="btn btn-primary js-book" href="https://calendly.com/sineminflux/30min" target="_blank" rel="noopener" style="font-size:17px;padding:15px 28px;">Book a call →</a>
-  </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
-    <div>
-      <a class="wordmark" href="#top">sinem.<small>Fractional Operations Manager</small></a>
+    <div class="frow">
+      <div class="fbrand">
+        <a class="fmark" href="#top">sinem.</a>
+        <div class="fsub">Fractional Operations Manager</div>
+      </div>
+      <div class="flinks">
+        <a href="https://www.instagram.com/sineminflux/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://substack.com/@sineminflux?r=92o50&amp;utm_campaign=profile&amp;utm_medium=profile-page" target="_blank" rel="noopener">Substack</a>
+        <a href="https://www.linkedin.com/in/sinemfurtana/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:hello@fluxfounderops.com">Email</a>
+        <a href="refund.html">Refunds</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
     </div>
-    <div class="footlinks">
-      <!-- REPLACE social URLs -->
-      <a href="https://www.instagram.com/sinemfurtana/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://substack.com/@sineminflux?r=92o50&amp;utm_campaign=profile&amp;utm_medium=profile-page" target="_blank" rel="noopener">Substack</a>
-      <a href="https://www.linkedin.com/in/sinemfurtana/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:hello@fluxfounderops.com">Email</a>
-      <a href="refund.html">Refunds</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-    <p class="legal">
-      © 2026 Flux Works LTD.<br>
-      Flux Works LTD is a company registered in England and Wales, company number 17100448.
-      Registered address: Unit 501 Leroy House, 434-436 Essex Road, London, United Kingdom, N1 3FY.
-    </p>
+    <p class="legal"><span class="cright">&copy; 2026 Flux Works LTD.</span>Flux Works LTD is a company registered in England and Wales, company number 17100448. Registered address: Unit 501 Leroy House, 434-436 Essex Road, London, United Kingdom, N1 3FY.</p>
   </div>
 </footer>
 
+<script>
+var _obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); _obs.unobserve(e.target); }
+  });
+},{threshold:0.18});
+document.querySelectorAll('.reveal,.stagger').forEach(function(el){ _obs.observe(el); });
+</script>
+
+<!-- scaling-juncture fork chart: ported from the Claude Design "Fork Chart" -->
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var root = $('efc-root');
+  if(!root) return;
+  var speed = 1, redK = 2.7;
+  var J = { x: 455, y: 300 };
+
+  // exponential polyline between two points; k controls acceleration
+  var expPath = function(x0,y0,x1,y1,k){
+    var d='', n=64;
+    for(var i=0;i<=n;i++){
+      var u=i/n;
+      var f=(Math.exp(k*u)-1)/(Math.exp(k)-1);
+      var px=x0+(x1-x0)*u;
+      var py=y0+(y1-y0)*f;
+      d+=(i?'L':'M')+px.toFixed(2)+' '+py.toFixed(2)+' ';
+    }
+    return d;
+  };
+  $('efc-pShared').setAttribute('d', expPath(186,505,J.x,J.y,2.15)); // shared rise -> junction
+  $('efc-pRed').setAttribute('d',    expPath(J.x,J.y,888,104,redK)); // scale as-is: steep
+  $('efc-pGreen').setAttribute('d',  expPath(J.x,J.y,906,316,0.5));  // structure: ~flat
+
+  var easeOut = function(t){ return 1 - Math.pow(1-t,3); };
+  var easeIn  = function(t){ return t*t; };  // accelerates toward the end
+  var tween = function(dur,cb,ease){ ease = ease || easeOut; return new Promise(function(res){
+    var t0 = performance.now();
+    var step = function(now){
+      var t = Math.min(1,(now-t0)/dur);
+      cb(ease(t));
+      if(t<1) requestAnimationFrame(step); else res();
+    };
+    requestAnimationFrame(step);
+  }); };
+  var setW  = function(id,w){ $(id).setAttribute('width', w.toFixed(1)); };
+  var show  = function(id){ var e=$(id); e.style.opacity='1'; e.style.transform='translateY(0)'; };
+  var wait  = function(ms){ return new Promise(function(r){ setTimeout(r,ms); }); };
+
+  var SHARED_W = 335, BRANCH_W = 470;
+
+  var setFinal = function(){
+    setW('efc-rShared',SHARED_W); setW('efc-rRed',BRANCH_W); setW('efc-rGreen',BRANCH_W);
+    $('efc-dot').style.transform='scale(1)';
+    $('efc-spark').style.opacity='1';
+    ['efc-here','efc-redT','efc-redS','efc-greenT','efc-greenS'].forEach(show);
+  };
+  var reset = function(){
+    setW('efc-rShared',0); setW('efc-rRed',0); setW('efc-rGreen',0);
+    $('efc-dot').style.transform='scale(0)';
+    $('efc-spark').style.opacity='0'; $('efc-spark').style.animation='none';
+    ['efc-here','efc-redT','efc-redS','efc-greenT','efc-greenS'].forEach(function(id){
+      var e=$(id); e.style.opacity='0'; e.style.transform='translateY(8px)';
+    });
+  };
+
+  var run = function(){ return (async function(){
+    reset();
+    await wait(70);
+    await tween(560/speed, function(f){ setW('efc-rShared', f*SHARED_W); }, easeIn); // shared curve draws, accelerating into the point
+    $('efc-dot').style.transform='scale(1)';                                    // junction springs in
+    show('efc-here');
+    $('efc-spark').style.animation='none';
+    void $('efc-spark').offsetWidth;                                            // reflow, then twinkle
+    $('efc-spark').style.animation=(700/speed)+'ms efcTwinkle cubic-bezier(.2,1.4,.4,1) forwards';
+    await wait(440/speed);
+    var branch = tween(1200/speed, function(f){ var w=f*BRANCH_W; setW('efc-rRed',w); setW('efc-rGreen',w); });
+    await wait(560/speed);
+    show('efc-redT'); show('efc-redS'); show('efc-greenT'); show('efc-greenS');
+    await branch;
+  })(); };
+
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    setFinal();
+  } else {
+    reset();
+    var played = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting && !played){ played=true; run(); } });
+    },{threshold:0.35});
+    io.observe(root);
+  }
+  $('efc-replay').addEventListener('click', function(){ run(); });
+})();
+</script>
+
+<!-- "you, if:" interactive checklist (ported from Claude Design) -->
+<script>
+(function(){
+  var KEY='fluxops-founder-checklist-v2';
+  var rows=Array.prototype.slice.call(document.querySelectorAll('.ck-row'));
+  if(!rows.length) return;
+  var palette=['#c25f3f','#6a8f6b','#dd7958','#c99a3a','#c25f3f','#6a8f6b','#dd7958','#c99a3a','#c25f3f'];
+  var tilts=[-4,3,-2,4,-3,2,-4,3,-2];
+  var state=[]; try{state=JSON.parse(localStorage.getItem(KEY))||[];}catch(e){state=[];}
+  rows.forEach(function(row,i){
+    var c=palette[i%palette.length];
+    var tick=row.querySelector('.ck-tick');
+    var box=row.querySelector('rect');
+    var boxwrap=row.querySelector('.ck-box');
+    if(tick) tick.setAttribute('stroke',c);
+    if(box) box.setAttribute('stroke',c);
+    if(boxwrap){boxwrap.style.transform='rotate('+tilts[i%tilts.length]+'deg)';boxwrap.style.transformOrigin='center';}
+    row.dataset.color=c;
+  });
+  var paint=function(row,on,animate){
+    var tick=row.querySelector('.ck-tick');
+    var txt=row.querySelector('.ck-txt');
+    var c=row.dataset.color||'#c25f3f';
+    if(!animate){tick.style.transition='none';txt.style.transition='none';}
+    tick.style.strokeDashoffset=on?'0':'44';
+    txt.style.textDecorationColor=on?c:'transparent';
+    txt.style.color=on?'#8a857c':'#1B1A17';
+    if(!animate){void row.offsetWidth;tick.style.transition='stroke-dashoffset .35s ease';txt.style.transition='color .3s ease, text-decoration-color .35s ease';}
+  };
+  var save=function(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}};
+  var countEl=document.getElementById('ck-count');
+  var TOTAL=rows.length;
+  var msg=function(n){
+    if(n<=0) return "Tick the ones that's you.";
+    if(n<=2) return n+" of "+TOTAL+". Even this much is costing you.";
+    if(n<=4) return n+" of "+TOTAL+". The structure is running you, not the other way round.";
+    if(n<TOTAL) return n+" of "+TOTAL+". This is the scaling juncture, and you can feel it.";
+    return "All "+TOTAL+". That founder is you. Let's change that.";
+  };
+  var updateCount=function(){var n=0;for(var i=0;i<rows.length;i++){if(state[i])n++;}if(countEl)countEl.textContent=msg(n);};
+  rows.forEach(function(row,i){
+    paint(row,!!state[i],false);
+    row.addEventListener('click',function(){state[i]=!state[i];paint(row,state[i],true);save();updateCount();});
+  });
+  updateCount();
+  var rb=document.querySelector('.ck-reset');
+  if(rb) rb.addEventListener('click',function(){state=[];rows.forEach(function(row){paint(row,false,true);});save();updateCount();});
+})();
+</script>
+
+<!-- loop chart (ported from Claude Design) -->
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var ring=$('lp-ring'); if(!ring) return;
+  var speed=1.3, ringCol='#1B1A17', ballCol='#6a8f6b', CX=500, CY=500, R=280;
+  ['lp-ring','lp-cv0','lp-cv1','lp-cv2','lp-cv3','lp-cv4','lp-cv5'].forEach(function(id){var e=$(id);if(e)e.setAttribute('stroke',ringCol);});
+  $('lp-spark').setAttribute('fill',ringCol); $('lp-cap').setAttribute('fill','#c25f3f'); $('lp-orbitI').setAttribute('fill',ballCol);
+  var nodes=['lp-n0','lp-n1','lp-n2','lp-n3','lp-n4','lp-n5'];
+  var chevs=['lp-cv0','lp-cv1','lp-cv2','lp-cv3','lp-cv4','lp-cv5'];
+  ring.setAttribute('stroke-dashoffset','0');
+  nodes.forEach(function(id){var e=$(id);if(e)e.style.transform='scale(1)';});
+  chevs.forEach(function(id){var e=$(id);if(e)e.style.opacity='1';});
+  $('lp-cap').style.opacity='1'; $('lp-orbit').style.opacity='1';
+  var cloudPath=function(rx,ry,bumps){var pts=[];for(var k=0;k<bumps;k++){var a=(k/bumps)*2*Math.PI;pts.push([Math.cos(a)*rx,Math.sin(a)*ry]);}var d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);for(var j=0;j<bumps;j++){var q=pts[(j+1)%bumps];var mx=(pts[j][0]+q[0])/2,my=(pts[j][1]+q[1])/2;d+=' Q'+(mx*1.42).toFixed(1)+' '+(my*1.42).toFixed(1)+' '+q[0].toFixed(1)+' '+q[1].toFixed(1);}return d+' Z';};
+  nodes.forEach(function(id,i){var cb=$('lp-cb'+i);if(cb)cb.setAttribute('d',cloudPath(128,52,10));});
+  var stuck={};
+  nodes.forEach(function(id,i){var g=$(id);if(!g)return;g.style.cursor='pointer';var s1=$('lp-s1-'+i),cloud=$('lp-c'+i);var show=function(on){if(s1)s1.style.opacity=on?'0':'1';if(cloud)cloud.style.opacity=on?'1':'0';};g.addEventListener('mouseenter',function(){show(true);});g.addEventListener('mouseleave',function(){if(!stuck[i])show(false);});g.addEventListener('click',function(){stuck[i]=!stuck[i];show(stuck[i]);});});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  $('lp-spark').style.animation=(9000/speed)+'ms lpSpin linear infinite';
+  var ang=-Math.PI/2, raf;
+  var orbit=function(){ang+=0.0095*speed;var x=CX+R*Math.cos(ang);var y=CY+R*Math.sin(ang);$('lp-orbit').setAttribute('transform','translate('+x.toFixed(2)+','+y.toFixed(2)+')');raf=requestAnimationFrame(orbit);};
+  raf=requestAnimationFrame(orbit);
+})();
+</script>
+
+<!-- breaks & fixes highlighter swipe -->
+<script>
+(function(){
+  var bf=document.querySelector('.bf'); if(!bf) return;
+  var play=function(){ bf.classList.remove('play'); void bf.offsetWidth; bf.classList.add('play'); };
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ bf.classList.add('play'); }
+  else{ var played=false; var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting&&!played){played=true;play();} });},{threshold:0.25}); io.observe(bf); }
+  var btn=bf.querySelector('.bf-replay'); if(btn) btn.addEventListener('click',play);
+})();
+</script>
+
+<!-- workforce model (ported from Claude Design) -->
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var rootEl=document.querySelector('.wm'); if(!rootEl) return;
+  var speed=1;
+  var tilt={'wm-founder':-1.5,'wm-you':1,'wm-l0':-3,'wm-l1':2.5,'wm-l2':-2,'wm-l3':3};
+  var order=['wm-founder','wm-you','wm-l0','wm-l1','wm-l2','wm-l3'];
+  order.forEach(function(id){var g=$(id);if(g)g.style.filter='drop-shadow(3px 4px 0 rgba(27,26,23,0.16))';});
+  var showBox=function(id,on){var e=$(id);if(!e)return;var t=tilt[id]||0;e.style.opacity=on?'1':'0';e.style.transform=(on?'translateY(0)':'translateY(8px)')+' rotate('+t+'deg)';};
+  var run=function(){
+    order.forEach(function(id){showBox(id,false);});
+    $('wm-lines').style.opacity='0';
+    rootEl.getBoundingClientRect();
+    order.forEach(function(id,i){setTimeout(function(){showBox(id,true);},120+i*(130/speed));});
+    setTimeout(function(){$('wm-lines').style.opacity='1';},120+2*(130/speed));
+  };
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ order.forEach(function(id){showBox(id,true);}); $('wm-lines').style.opacity='1'; }
+  else{ var played=false; var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting&&!played){played=true;run();} });},{threshold:0.3}); io.observe(rootEl); }
+  var btn=rootEl.querySelector('.wm-replay'); if(btn) btn.addEventListener('click',run);
+})();
+</script>
+
+<!-- loop quote: fast typing -->
+<script>
+(function(){
+  var el=document.getElementById('loopquote-text'); if(!el) return;
+  var full=el.innerHTML;
+  var segs=[
+    {t:"We map your business loop, uncover the ops leaks and redesign it. You get your ",h:false},
+    {t:"ease, creativity and freedom",h:true},
+    {t:" back.",h:false}
+  ];
+  var chars=[]; segs.forEach(function(s){for(var i=0;i<s.t.length;i++)chars.push({c:s.t.charAt(i),h:s.h});});
+  var esc=function(c){return c==='&'?'&amp;':c==='<'?'&lt;':c==='>'?'&gt;':c;};
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ el.innerHTML=full; return; }
+  var render=function(n){
+    var html='', open=false;
+    for(var i=0;i<n;i++){var ch=chars[i];
+      if(ch.h&&!open){html+='<span class="lq-hl">';open=true;}
+      else if(!ch.h&&open){html+='</span>';open=false;}
+      html+=esc(ch.c);
+    }
+    if(open)html+='</span>';
+    el.innerHTML=html+'<span class="lq-caret"></span>';
+  };
+  render(0);
+  var n=0, total=chars.length, started=false;
+  var type=function(){ n++; render(n); if(n<total){ setTimeout(type,17); } else { setTimeout(function(){var c=el.querySelector('.lq-caret'); if(c)c.parentNode.removeChild(c);},700); } };
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting&&!started){ started=true; type(); io.disconnect(); } });},{threshold:0.5});
+  io.observe(el);
+})();
+</script>
+
+<!-- offers (Claude Design, big-number editorial accordion) -->
+<script>
+(function(){
+  var list=document.getElementById('offers-list'); if(!list) return;
+  var OFFERS=[
+   {n:'01',name:'Claude OS build',entry:true,
+    promise:'Your entry point. One day, side by side. You arrive with chaos, you leave running your business on an AI operating system you own.',
+    who:"Founders and solo operators who want their business running on Claude and know a template alone won't get them there. Your tools are scattered, and the whole operation lives in your head.",
+    included:['Intake and prep before the day: your business, your tools, where your time actually goes','One 6-8 hour build day, remote, two breaks','Your Claude operating system built live: router, memory, workstations, first automations, connected to your real tools','The session recording','Two weeks of async questions after'],
+    not:["A full ops build across your other tools (that's the Backend Sprint)","Support past the two weeks (that's the retainer)",'Done-for-you work after the day. You leave able to run it yourself.'],
+    structure:'Book → intake form → I prep your structure → the build day → two weeks of questions.',
+    timeline:'One day. Usually booked within two weeks.',
+    price:'$850',priceNote:'rising to $1,200 after the first three. Credits in full toward a Backend Sprint booked within 30 days.',
+    cta:'Book the day'},
+   {n:'02',name:'Backend Sprint',
+    promise:'Four weeks, done for you. The parts of your business that live in your head, built into systems that run without you.',
+    who:"Founders whose backend is the bottleneck. You've outgrown doing it all by hand, and every process still depends on you remembering it.",
+    included:['The top two or three systems your build day (or a scoping call) surfaced, built and live in your accounts','Written SOPs for each','A recorded handover walkthrough','One week of post-handover fixes'],
+    builtFrom:'Built from: a Claude operating system, a Notion task and ops layer, Kit or ManyChat automations, SOPs for the work only you know, a content-repurposing pipeline. You pick from your roadmap, not all of it.',
+    not:['Systems beyond the agreed two or three (new scope gets quoted separately)','Hiring or managing people','Content creation or brand strategy',"Maintenance after the fix week (that's the retainer)"],
+    structure:'Scope from a Claude OS build or a discovery call → four-week build → handover → one week of fixes.',
+    timeline:'Four weeks. 30-40 hours of build, capped.',
+    price:'From $4,000',
+    cta:'Start with a Claude OS build'},
+   {n:'03',name:'Launch Sprint',
+    promise:'You have the offer. I build the machine that launches it and keeps selling after launch week.',
+    who:"Founders with an offer they've created and are selling now: a course, a membership, a productized service. You have the vision and none of the operational plumbing to run the launch cleanly.",
+    included:['The launch funnel built: pages, checkout, email sequences','The automations that run it, across whatever your stack needs','Delivery ops so buyers get what they paid for without you doing it by hand','A launch playbook you keep and reuse for the next one','Post-launch systems so the offer keeps selling after the week ends'],
+    not:['Brand strategy or creative direction','Paid ads or marketing execution','Writing your offer or sales copy from scratch',"Ongoing management after handover (that's the retainer)"],
+    structure:'Kick-off → build phases with weekly check-ins → milestone sign-offs → handover.',
+    timeline:'Most launches, 4-6 weeks depending on the moving parts.',
+    price:'From $4,000',priceNote:'draft, to confirm.',
+    cta:'Book a Launch Sprint'},
+   {n:'04',name:'Fractional Ops Partner',cap:true,
+    promise:'The one the whole thing is named after. I run and grow your backend so your calendar shrinks to the work only you can do.',
+    who:'Founders whose systems are already built, by me or verified as solid, who want them run, maintained, and improved without hiring a full-time ops person.',
+    included:['Up to 15 hands-on hours a month','A monthly ops review call','Async support with a 48-hour response window','Maintenance and improvement of your systems','One new system or automation each month','Management of your existing workforce: VA, contractors, agents, automations'],
+    not:['Full-time availability',"Work past the 15 hours (quoted before it's done)",'Recruiting new team members','Brand or content strategy','Anything outside your systems scope without a re-quote'],
+    structure:"Monthly review → the month's work inside 15 hours → one new build → repeat.",
+    timeline:'Monthly, 3-month minimum. Capped at 3 clients at a time.',
+    price:'From $1,500/month',
+    prereq:'Prerequisite: for a backend I built, or systems a scoping call verifies. Cold inquiries start with a Claude OS build or a discovery call, so the hours stay small and the response window stays real.',
+    cta:'Apply for a seat'}
+  ];
+  function li(arr){return arr.map(function(x){return '<li>'+x+'</li>';}).join('');}
+  function detail(o){
+    return ''+
+    '<div class="blk"><span class="blk-label">Who it\'s for</span><p>'+o.who+'</p></div>'+
+    '<div class="io-grid">'+
+      '<div class="io"><span class="blk-label">What\'s included</span><ul>'+li(o.included)+'</ul>'+(o.builtFrom?'<p class="io-note">'+o.builtFrom+'</p>':'')+'</div>'+
+      '<div class="io not"><span class="blk-label">Not included</span><ul>'+li(o.not)+'</ul></div>'+
+    '</div>'+
+    '<div class="meta-row"><div><span class="blk-label">Structure</span><p>'+o.structure+'</p></div><div><span class="blk-label">Timeline</span><p>'+o.timeline+'</p></div></div>'+
+    (o.prereq?'<p class="prereq">'+o.prereq+'</p>':'')+
+    '<div class="cta-row"><div class="price-wrap"><span class="price-line">'+o.price+'</span>'+(o.priceNote?'<span class="pn-line">'+o.priceNote+'</span>':'')+'</div><a class="cta-btn" href="https://calendly.com/sineminflux/30min">'+o.cta+' →</a></div>';
+  }
+  function badges(o){return (o.entry?'<span class="badge">Start here</span>':'')+(o.cap?'<span class="badge cap">3 clients max</span>':'');}
+  list.innerHTML=OFFERS.map(function(o,i){
+    return '<div class="o3-card" data-card>'+
+      '<button class="o3-head" data-toggle>'+
+        '<span class="o3-num">'+o.n+'</span>'+
+        '<span class="o3-body">'+
+          '<span class="o3-toprow"><span class="o3-name">'+o.name+'</span>'+badges(o)+'</span>'+
+          '<span class="o3-promise">'+o.promise+'</span>'+
+          '<span class="o3-foot"><span class="pricepill">'+o.price+'</span><span class="o3-see">details <span class="chev">▾</span></span></span>'+
+        '</span>'+
+      '</button>'+
+      '<div class="o3-detail">'+detail(o)+'</div>'+
+    '</div>';
+  }).join('');
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-toggle]'); if(!t||!list.contains(t)) return;
+    e.preventDefault();
+    t.closest('[data-card]').classList.toggle('open');
+  });
+})();
+</script>
+
+<!-- founder tax calculator -->
+<script>
+(function(){
+  var h=document.getElementById('taxHours'), r=document.getElementById('taxRate');
+  var big=document.getElementById('taxBig'), expl=document.getElementById('taxExpl');
+  if(!h||!r) return;
+  function upd(){
+    var hours=parseFloat(h.value)||0, rate=parseFloat(r.value)||0;
+    var tax=Math.round(hours*rate*4.3/10)*10;
+    big.innerHTML='~$'+tax.toLocaleString()+'<span class="taxper"> /month</span>';
+    expl.textContent=hours+' backend hours a week at $'+rate+' an hour. Hours × rate × 4.3 weeks, rough on purpose, and usually bigger than you\'d guess.';
+  }
+  h.addEventListener('input',upd); r.addEventListener('input',upd); upd();
+})();
+</script>
+
+<!-- proof folder tabs -->
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.ftab'), cases=document.querySelectorAll('.fcase');
+  if(!tabs.length) return;
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      var i=t.getAttribute('data-tab');
+      tabs.forEach(function(x){x.classList.remove('active');});
+      cases.forEach(function(c){c.classList.remove('active');});
+      t.classList.add('active');
+      var panel=document.querySelector('.fcase[data-case="'+i+'"]'); if(panel) panel.classList.add('active');
+    });
+  });
+})();
+</script>
 </body>
 </html>
