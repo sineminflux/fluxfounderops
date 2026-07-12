@@ -13,6 +13,11 @@
   --terra:#dd7958;--terra-deep:#c25f3f;
   --green:#6a8f6b;--yellow:#e9c46a;--pink:#e5a9a9;
   --grid:rgba(221,121,88,0.08);--cell:52px;--maxw:920px;--muted:#4c4a45;
+  /* edge tokens: tonal card borders. a card is bordered in the deeper shade of the
+     colour it would have been filled with, so the colour lives in the edge. */
+  --edge-terra:#E3B7A4;--edge-cream:#DFC98A;--edge-green:#B4C9AC;
+  --sh-terra:rgba(221,121,88,.16);--sh-cream:rgba(201,154,58,.16);--sh-green:rgba(106,143,107,.16);
+  --gold:#c99a3a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -196,7 +201,12 @@ nav .cta{background:var(--terra);color:#fff !important;border:2px solid var(--in
 .chev{transition:transform .25s ease;font-size:13px;color:var(--terra-deep);}
 [data-card].open .chev{transform:rotate(180deg);}
 .o3-list{display:flex;flex-direction:column;gap:18px;margin-top:36px;}
-.o3-card{background:var(--paper-2);border:2px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 rgba(27,26,23,.12);overflow:hidden;}
+.o3-card{background:var(--paper-2);border:2px solid var(--edge-terra);border-radius:14px;box-shadow:4px 4px 0 var(--sh-terra);overflow:hidden;transition:transform .15s ease;}
+.o3-card:nth-child(1){border-color:var(--edge-terra);box-shadow:4px 4px 0 var(--sh-terra);}
+.o3-card:nth-child(2){border-color:var(--edge-cream);box-shadow:4px 4px 0 var(--sh-cream);}
+.o3-card:nth-child(3){border-color:var(--edge-green);box-shadow:4px 4px 0 var(--sh-green);}
+.o3-card:nth-child(4){border-color:var(--edge-terra);box-shadow:4px 4px 0 var(--sh-terra);}
+.o3-card:hover{transform:translateY(-1px);}
 .o3-head{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;width:100%;text-align:left;background:none;border:none;font-family:inherit;color:inherit;cursor:pointer;padding:22px 26px;}
 .o3-num{font-family:'Anton',sans-serif;font-size:clamp(54px,7vw,82px);line-height:.76;flex:none;letter-spacing:-.02em;}
 .o3-card:nth-child(1) .o3-num{color:var(--terra);}
@@ -218,8 +228,8 @@ nav .cta{background:var(--terra);color:#fff !important;border:2px solid var(--in
 .taxinputs{display:flex;flex-direction:column;gap:22px;}
 .taxinputs label{font-weight:600;font-size:14px;display:block;}
 .taxsub{display:block;font-weight:400;font-size:12px;color:#5a564e;margin-top:2px;}
-.taxinputs input{width:100%;margin-top:10px;padding:12px 16px;border:2px solid var(--ink);border-radius:12px;font-family:'Inter',sans-serif;font-size:16px;background:var(--paper-2);color:var(--ink);box-shadow:3px 3px 0 rgba(27,26,23,.1);}
-.taxinputs input:focus{outline:none;border-color:var(--terra-deep);}
+.taxinputs input{width:100%;margin-top:10px;padding:12px 16px;border:2px solid var(--edge-terra);border-radius:12px;font-family:'Inter',sans-serif;font-size:16px;background:var(--paper-2);color:var(--ink);box-shadow:3px 3px 0 var(--sh-terra);}
+.taxinputs input:focus{outline:none;border-color:var(--terra-deep);box-shadow:3px 3px 0 rgba(194,95,63,.28);}
 .taxresult{background:var(--ink);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--terra-deep);padding:28px 26px;display:flex;flex-direction:column;justify-content:center;}
 .taxlabel{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--yellow);font-size:16px;}
 .taxbig{font-family:'Anton',sans-serif;font-size:clamp(44px,7vw,66px);line-height:.95;color:var(--terra);margin:6px 0 10px;}
@@ -335,6 +345,9 @@ nav .cta{background:var(--terra);color:#fff !important;border:2px solid var(--in
 .stagger.in > *:nth-child(5){transition-delay:.44s;}
 @media (prefers-reduced-motion: reduce){
   .reveal,.stagger > *,.reveal.tilt{opacity:1;transform:none;transition:none;}
+  /* the easy-to-forget ones: these live in CSS, not in the JS we already guard */
+  .chev,.ftab,.o3-card,.btn,.cta-btn,.proofline{transition:none;}
+  .btn:hover,.cta-btn:hover,.o3-card:hover{transform:none;}
 }
 
 /* ---- how detail page ---- */

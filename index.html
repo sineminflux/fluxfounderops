@@ -21,6 +21,11 @@
   --terra:#dd7958;--terra-deep:#c25f3f;
   --green:#6a8f6b;--yellow:#e9c46a;--pink:#e5a9a9;
   --grid:rgba(221,121,88,0.08);--cell:52px;--maxw:920px;--muted:#4c4a45;
+  /* edge tokens: tonal card borders. a card is bordered in the deeper shade of the
+     colour it would have been filled with, so the colour lives in the edge. */
+  --edge-terra:#E3B7A4;--edge-cream:#DFC98A;--edge-green:#B4C9AC;
+  --sh-terra:rgba(221,121,88,.16);--sh-cream:rgba(201,154,58,.16);--sh-green:rgba(106,143,107,.16);
+  --gold:#c99a3a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -110,6 +115,7 @@ nav .cta{background:var(--terra);color:#fff !important;border:2px solid var(--in
 .ck-row{display:flex;align-items:flex-start;gap:13px;padding:11px 4px;border-bottom:1.5px dashed rgba(27,26,23,.16);cursor:pointer;transition:background .18s ease;}
 .ck-row:last-child{border-bottom:none;}
 .ck-row:hover{background:rgba(221,121,88,.06);}
+.ck-row:focus-visible{outline:2.5px solid var(--terra-deep);outline-offset:2px;border-radius:6px;background:rgba(221,121,88,.06);}
 .ck-box{flex:0 0 26px;height:26px;margin-top:1px;display:inline-block;}
 .ck-box svg{width:26px;height:26px;overflow:visible;display:block;}
 .ck-tick{stroke-dasharray:44;stroke-dashoffset:44;transition:stroke-dashoffset .35s ease;}
@@ -235,7 +241,12 @@ footer .legal .cright{display:block;color:#5a564e;font-weight:600;margin-bottom:
 .chev{transition:transform .25s ease;font-size:13px;color:var(--terra-deep);}
 [data-card].open .chev{transform:rotate(180deg);}
 .o3-list{display:flex;flex-direction:column;gap:18px;margin-top:36px;}
-.o3-card{background:var(--paper-2);border:2px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 rgba(27,26,23,.12);overflow:hidden;}
+.o3-card{background:var(--paper-2);border:2px solid var(--edge-terra);border-radius:14px;box-shadow:4px 4px 0 var(--sh-terra);overflow:hidden;transition:box-shadow .15s ease,transform .15s ease;}
+.o3-card:nth-child(1){border-color:var(--edge-terra);box-shadow:4px 4px 0 var(--sh-terra);}
+.o3-card:nth-child(2){border-color:var(--edge-cream);box-shadow:4px 4px 0 var(--sh-cream);}
+.o3-card:nth-child(3){border-color:var(--edge-green);box-shadow:4px 4px 0 var(--sh-green);}
+.o3-card:nth-child(4){border-color:var(--edge-terra);box-shadow:4px 4px 0 var(--sh-terra);}
+.o3-card:hover{transform:translateY(-1px);}
 .o3-head{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;width:100%;text-align:left;background:none;border:none;font-family:inherit;color:inherit;cursor:pointer;padding:22px 26px;}
 .o3-num{font-family:'Anton',sans-serif;font-size:clamp(54px,7vw,82px);line-height:.76;flex:none;letter-spacing:-.02em;}
 .o3-card:nth-child(1) .o3-num{color:var(--terra);}
@@ -257,8 +268,8 @@ footer .legal .cright{display:block;color:#5a564e;font-weight:600;margin-bottom:
 .taxinputs{display:flex;flex-direction:column;gap:22px;}
 .taxinputs label{font-weight:600;font-size:14px;display:block;}
 .taxsub{display:block;font-weight:400;font-size:12px;color:#5a564e;margin-top:2px;}
-.taxinputs input{width:100%;margin-top:10px;padding:12px 16px;border:2px solid var(--ink);border-radius:12px;font-family:'Inter',sans-serif;font-size:16px;background:var(--paper-2);color:var(--ink);box-shadow:3px 3px 0 rgba(27,26,23,.1);}
-.taxinputs input:focus{outline:none;border-color:var(--terra-deep);}
+.taxinputs input{width:100%;margin-top:10px;padding:12px 16px;border:2px solid var(--edge-terra);border-radius:12px;font-family:'Inter',sans-serif;font-size:16px;background:var(--paper-2);color:var(--ink);box-shadow:3px 3px 0 var(--sh-terra);}
+.taxinputs input:focus{outline:none;border-color:var(--terra-deep);box-shadow:3px 3px 0 rgba(194,95,63,.28);}
 .taxresult{background:var(--ink);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--terra-deep);padding:28px 26px;display:flex;flex-direction:column;justify-content:center;}
 .taxlabel{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--yellow);font-size:16px;}
 .taxbig{font-family:'Anton',sans-serif;font-size:clamp(44px,7vw,66px);line-height:.95;color:var(--terra);margin:6px 0 10px;}
@@ -396,15 +407,18 @@ footer .legal .cright{display:block;color:#5a564e;font-weight:600;margin-bottom:
 .stagger.in > *:nth-child(5){transition-delay:.44s;}
 @media (prefers-reduced-motion: reduce){
   .reveal,.stagger > *,.reveal.tilt{opacity:1;transform:none;transition:none;}
+  /* the easy-to-forget ones: these live in CSS, not in the JS we already guard */
+  .chev,.ftab,.o3-card,.btn,.cta-btn,.signup-btn,.proofline{transition:none;}
+  .btn:hover,.cta-btn:hover,.signup-btn:hover,.o3-card:hover,.opt:hover{transform:none;}
 }
 </style>
-<style id="readability-optA">
+<style id="type-scale">
 /* ============================================================
-   READABILITY PASS — Option A (Comfortable), applied 2026-07-11.
-   Raises the type floor: body 14->16, plus lead/labels/secondary
-   titles. Hero H1 left untouched. Chart (SVG) text is bumped +22%
-   directly in the markup below. To revert: delete this block and
-   restore the SVG font-size values.
+   THE TYPE SCALE. This is canonical, not an experiment.
+   Body sits at 16px and that is a floor, never drop below it to
+   fit more in. Card body is 14px. SVG text in the charts is set
+   +22% in the markup so it does not read small beside 16px body.
+   Matches whimsical-ai-design / web-design.md section 3.
    ============================================================ */
 body{font-size:16px;}
 body .lead{font-size:17px;}
@@ -422,10 +436,10 @@ body .o3-promise,body .fcase p,body .era p,body .era2 p,body .funcard p,
 body .funcard2 p,body .blk p,body .folder p,body .forkcopy,body .how-more-note{font-size:15px;}
 body .o3-promise{font-size:14.5px;}
 body .callshape,body .taxexpl,body .taxnote,body .taxsub,body .pn-line,body .prereq,
-body .io-note,body .leak p,body .loopback,body .chartcap,body .fcase-cap,
-body .polaroid .cap,body .polaroid2 .cap2,body .ck-txt,body .lnode,body .cnode,
-body .leak h3,body .bf-prob,body .bf-fixt,body .legal,body footer .flinks a{font-size:13.5px;}
-body .io li{font-size:13px;}
+body .io-note,body .loopback,body .chartcap,body .fcase-cap,
+body .polaroid2 .cap2,body .ck-txt,
+body .legal,body footer .flinks a{font-size:14px;}
+body .io li{font-size:14px;}
 body .sectiontag,body .badge,body .pricepill,body .blk-label,
 body .wm-eyebrow,body .lane,body .dlabel{font-size:12px;}
 body .o3-num{font-size:clamp(56px,7vw,84px);}
@@ -527,13 +541,13 @@ body .o3-num{font-size:clamp(56px,7vw,84px);}
           <button class="ck-reset" type="button" aria-label="Reset the checklist">reset</button>
         </div>
         <div class="ck-list">
-          <div class="ck-row" data-i="1"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You're one "quick question" away from losing the whole morning.</span></div>
-          <div class="ck-row" data-i="2"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You start the day already playing catch-up.</span></div>
-          <div class="ck-row" data-i="3"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You had to decide 1,000 things before your lunch break, and now you're tired.</span></div>
-          <div class="ck-row" data-i="5"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">The good ideas are still in your phone, waiting.</span></div>
-          <div class="ck-row" data-i="7"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You'd never quit, but a two-week disappearance without the business breaking sounds nice.</span></div>
+          <div class="ck-row" role="checkbox" tabindex="0" aria-checked="false" data-i="1"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You're one "quick question" away from losing the whole morning.</span></div>
+          <div class="ck-row" role="checkbox" tabindex="0" aria-checked="false" data-i="2"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You start the day already playing catch-up.</span></div>
+          <div class="ck-row" role="checkbox" tabindex="0" aria-checked="false" data-i="3"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You had to decide 1,000 things before your lunch break, and now you're tired.</span></div>
+          <div class="ck-row" role="checkbox" tabindex="0" aria-checked="false" data-i="5"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">The good ideas are still in your phone, waiting.</span></div>
+          <div class="ck-row" role="checkbox" tabindex="0" aria-checked="false" data-i="7"><span class="ck-box"><svg viewBox="0 0 30 30"><rect x="2" y="4" width="24" height="24" rx="6" fill="#fff" stroke="#1B1A17" stroke-width="2.5"></rect><path class="ck-tick" d="M5 16 L12 23 L26 6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="ck-txt">You'd never quit, but a two-week disappearance without the business breaking sounds nice.</span></div>
         </div>
-        <div class="ck-count" id="ck-count" aria-live="polite">Tick the ones that landed.</div>
+        <div class="ck-count" id="ck-count" aria-live="polite">Tick the ones that sound like you.</div>
       </div>
     </div>
   </div>
@@ -952,12 +966,13 @@ document.querySelectorAll('.reveal,.stagger').forEach(function(el){ _obs.observe
     txt.style.textDecorationColor=on?c:'transparent';
     txt.style.color=on?'#8a857c':'#1B1A17';
     if(!animate){void row.offsetWidth;tick.style.transition='stroke-dashoffset .35s ease';txt.style.transition='color .3s ease, text-decoration-color .35s ease';}
+    row.setAttribute('aria-checked', on ? 'true' : 'false');
   };
   var save=function(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}};
   var countEl=document.getElementById('ck-count');
   var TOTAL=rows.length;
   var msg=function(n){
-    if(n<=0) return "Tick the ones that's you.";
+    if(n<=0) return "Tick the ones that sound like you.";
     if(n<=2) return n+" of "+TOTAL+". Even this much is costing you.";
     if(n<=4) return n+" of "+TOTAL+". The structure is running you, not the other way round.";
     if(n<TOTAL) return n+" of "+TOTAL+". This is the scaling juncture, and you can feel it.";
@@ -966,7 +981,13 @@ document.querySelectorAll('.reveal,.stagger').forEach(function(el){ _obs.observe
   var updateCount=function(){var n=0;for(var i=0;i<rows.length;i++){if(state[i])n++;}if(countEl)countEl.textContent=msg(n);};
   rows.forEach(function(row,i){
     paint(row,!!state[i],false);
-    row.addEventListener('click',function(){state[i]=!state[i];paint(row,state[i],true);save();updateCount();});
+    var toggle=function(){state[i]=!state[i];paint(row,state[i],true);save();updateCount();};
+    row.addEventListener('click',toggle);
+    // keyboard: the rows are role="checkbox", so Space and Enter must toggle them.
+    // preventDefault on Space, or the page scrolls instead.
+    row.addEventListener('keydown',function(e){
+      if(e.key===' '||e.key==='Spacebar'||e.key==='Enter'){e.preventDefault();toggle();}
+    });
   });
   updateCount();
   var rb=document.querySelector('.ck-reset');
