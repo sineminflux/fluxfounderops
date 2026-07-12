@@ -176,6 +176,32 @@ footer{padding:48px 0;text-align:center;font-size:12px;color:#7a766e;}
   .opt,.btn{transition:none;}
 }
 </style>
+<style id="readability-optA">
+/* ============================================================
+   READABILITY PASS — Option A (Comfortable), applied 2026-07-11.
+   Raises the type floor on the quiz: body 14->16, plus lead,
+   answer options, labels, and result text. Hero H1 untouched.
+   To revert: delete this block.
+   ============================================================ */
+body{font-size:16px;}
+body .lead{font-size:17px;}
+body h3{font-size:19px;}
+body h2{font-size:clamp(26px,4.5vw,40px);}
+body .qcard h2{font-size:clamp(22px,3.6vw,30px);}
+body nav .backlink{font-size:14px;}
+body nav .tag{font-size:13.5px;}
+body .btn{font-size:15.5px;}
+body .opt{font-size:15px;}
+body .opt b{font-size:12px;}
+body .qcard .qnum{font-size:16px;}
+body .taxrow label{font-size:15px;}
+body .taxrow .sub,body .taxnote,body .emailnote,body .emailerr,body .sentline,
+body .bigstat p,body .honest p,body .gate p,body .fixcard p,body .numbox p,
+body .bar .lbl,body .smalllink,body footer{font-size:13.5px;}
+body .bar .sc{font-size:14px;}
+body .honest h3,body .gate h3{font-size:20px;}
+body .bigstat .num{font-size:clamp(32px,6vw,50px);}
+</style>
 </head>
 <body>
 
@@ -523,6 +549,7 @@ function startQuiz(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)){ err.style.display = 'block'; input.focus(); return; }
   err.style.display = 'none';
   email = val;
+  if(window.va) window.va('event',{name:'quiz_started'});
   // capture to Kit (form 9669772), no backend; fire-and-continue so a slow network never traps the user
   try{
     var fd = new FormData(); fd.append('email_address', val);
@@ -603,6 +630,7 @@ function showResult(){
   var key = topBottleneck();
   var info = resolveInfo(key);
   var total = 0; for(var k in scores){ total += scores[k]; }
+  if(window.va) window.va('event',{name:'quiz_completed',data:{bottleneck:key, score:total}});
 
   document.getElementById('resStage').textContent = info.name;
   document.getElementById('resRead').textContent = info.read;
@@ -657,6 +685,17 @@ function showResult(){
   document.getElementById('result').classList.remove('hidden');
   window.scrollTo({top:0});
 }
+</script>
+
+<!-- Vercel Web Analytics + Speed Insights (cookieless, no consent banner) -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href*="calendly.com"]');
+  if(a) window.va('event',{name:'book_call_click',data:{page:location.pathname,label:(a.textContent||'').trim().slice(0,60)}});
+});
 </script>
 </body>
 </html>
